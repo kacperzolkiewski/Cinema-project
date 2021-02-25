@@ -6,7 +6,7 @@ const app = express()
 const port = process.env.PORT || 8080
 
 const connectMongoDB = async (): Promise<void> => {
-    const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.u2bdz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+    const uri = process.env.MONGODB_URI
     await mongoose
         .connect(uri, {
             useNewUrlParser: true,
