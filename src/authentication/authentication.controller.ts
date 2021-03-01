@@ -11,7 +11,6 @@ import validationMiddleware from "../middleware/validation.middleware"
 import CreateUserDto from "../users/user.dto"
 import userModel from "./../users/user.model"
 import LogInDto from "./logIn.dto"
-import { PasswordValidator } from "./PasswordValidator"
 import PasswordPolicyException from "../exceptions/PasswordPolicyException"
 
 class AuthenticationController implements Controller {
@@ -38,20 +37,18 @@ class AuthenticationController implements Controller {
         if (await this.user.findOne({ email: userData.email })) {
             next(new UserWithThatEmailAlreadyExistsException(userData.email))
         } else {
-            if (PasswordValidator.validate(userData.password) === false) {
-                next(new PasswordPolicyException())
-            }
-
-            const hashedPassword = await bcrypt.hash(userData.password, 10)
-            const user = await this.user.create({
-                ...userData,
-                password: hashedPassword,
-            })
-            user.password = undefined
-            const tokenData = this.createToken(user)
-            response.setHeader("Set-Cookie", [this.createCookie(tokenData)])
-            response.send(user)
+            next(new PasswordPolicyException())
         }
+
+        const hashedPassword = await bcrypt.hash(userData.password, 10)
+        const user = await this.user.create({
+            ...userData,
+            password: hashedPassword,
+        })
+        user.password = undefined
+        const tokenData = this.createToken(user)
+        response.setHeader("Set-Cookie", [this.createCookie(tokenData)])
+        response.send(user)
     }
 
     private loggingIn = async (
@@ -89,7 +86,7 @@ class AuthenticationController implements Controller {
         const expiresIn = 60 * 60 // an hour
         const secret = process.env.JWT_SECRET
         const dataStoredInToken: DataStoredInToken = {
-            _id: user._id,
+            _id: user.name,
         }
         return {
             expiresIn,
