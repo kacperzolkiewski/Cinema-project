@@ -20,10 +20,15 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Email required"],
         match: [/\S+@\S+\.\S+/, "is invalid"],
     },
-    password: String,
-    dateOfBirth: String,
+    password: {
+        required: true,
+        type: String,
+    },
+    dateOfBirth: {
+        required: true,
+        type: String,
+    },
     purchasedTickets: Array,
-    suggestedFilms: Array,
 })
 
 module.exports = mongoose.model("User", UserSchema)
