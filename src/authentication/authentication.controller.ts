@@ -11,6 +11,8 @@ import validationMiddleware from "../middleware/validation.middleware"
 import CreateUserDto from "../users/user.dto"
 import userModel from "./../users/user.model"
 import LogInDto from "./logIn.dto"
+import { PasswordValidator } from "./PasswordValidator"
+import PasswordPolicyException from "../exceptions/PasswordPolicyException"
 
 class AuthenticationController implements Controller {
     public path = "/auth"
@@ -36,6 +38,10 @@ class AuthenticationController implements Controller {
         if (await this.user.findOne({ email: userData.email })) {
             next(new UserWithThatEmailAlreadyExistsException(userData.email))
         } else {
+            if (PasswordValidator.validate(userData.password) === false) {
+                next(new PasswordPolicyException())
+            }
+
             const hashedPassword = await bcrypt.hash(userData.password, 10)
             const user = await this.user.create({
                 ...userData,
