@@ -58,8 +58,7 @@
     "lint-staged": {
         "*.{js,json,ts}": [
             "prettier --write",
-            "eslint --fix --max-warnings 0",
-
+            "eslint --fix --max-warnings 0"
         ]
     },
     "husky": {

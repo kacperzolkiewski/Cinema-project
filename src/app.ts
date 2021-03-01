@@ -1,6 +1,5 @@
 import * as bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
-
 import express from "express"
 import * as mongoose from "mongoose"
 import Controller from "./interfaces/controller.interface"

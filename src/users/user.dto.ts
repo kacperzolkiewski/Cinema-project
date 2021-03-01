@@ -1,4 +1,4 @@
-import { IsString } from "class-validator"
+import { IsString, MaxLength, MinLength } from "class-validator"
 
 class CreateUserDto {
     @IsString()
@@ -8,6 +8,8 @@ class CreateUserDto {
     public email: string
 
     @IsString()
+    @MaxLength(256)
+    @MinLength(6)
     public password: string
 }
 
