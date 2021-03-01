@@ -28,7 +28,6 @@ const UserSchema = new mongoose.Schema({
         required: true,
         type: String,
     },
-    purchasedTickets: Array,
 })
 
 module.exports = mongoose.model("User", UserSchema)
