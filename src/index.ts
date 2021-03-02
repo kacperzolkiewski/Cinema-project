@@ -1,9 +1,16 @@
 import express from "express"
 import mongoose from "mongoose"
 import "dotenv/config"
+import pino from "pino"
+import expressPino from "express-pino-logger"
+
+const logger = pino({ level: process.env.LOG_LEVEL || "info" })
+const expressLogger = expressPino({ logger })
 
 const app = express()
 const port = process.env.PORT || 8080
+
+app.use(expressLogger)
 
 const connectMongoDB = async (): Promise<void> => {
     const uri = process.env.MONGODB_URI
@@ -13,9 +20,9 @@ const connectMongoDB = async (): Promise<void> => {
             useUnifiedTopology: true,
         })
         .then(
-            () => console.log("MongoDB connected"),
+            () => logger.info("MongoDB connected"),
             (error) => {
-                console.error(error)
+                logger.error(error)
             },
         )
 }
@@ -23,6 +30,7 @@ const connectMongoDB = async (): Promise<void> => {
 connectMongoDB()
 
 app.get("/", (req, res) => {
+    logger.debug("Calling res.send")
     res.send("Hello World!")
 })
 
