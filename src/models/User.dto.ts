@@ -5,6 +5,9 @@ class CreateUserDto {
     public name: string
 
     @IsString()
+    public surname: string
+
+    @IsString()
     public email: string
 
     @IsString()

@@ -1,12 +1,11 @@
-import { Date } from "mongoose"
-
 interface User {
+    _id: string
     name: string
     surname: string
+    phoneNumber: string
     email: string
     password: string
-    phoneNumber: number
-    birthDate: Date
+    dateOfBirth: string
 }
 
 export default User

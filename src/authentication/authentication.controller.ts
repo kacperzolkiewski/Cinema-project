@@ -1,15 +1,15 @@
 import * as bcrypt from "bcrypt"
 import * as express from "express"
 import * as jwt from "jsonwebtoken"
-import User from "../users/user.interface"
+import User from "../models/User.interface"
 import UserWithThatEmailAlreadyExistsException from "../exceptions/UserWithThatEmailAlreadyExistsException"
 import WrongCredentialsException from "../exceptions/WrongCredentialsException"
 import Controller from "../interfaces/controller.interface"
 import DataStoredInToken from "../interfaces/dataStoredInToken"
 import TokenData from "../interfaces/tokenData.interface"
 import validationMiddleware from "../middleware/validation.middleware"
-import CreateUserDto from "../users/user.dto"
-import userModel from "./../users/user.model"
+import CreateUserDto from "../models/User.dto"
+import userModel from "./../models/User"
 import LogInDto from "./logIn.dto"
 import PasswordPolicyException from "../exceptions/PasswordPolicyException"
 
@@ -86,7 +86,7 @@ class AuthenticationController implements Controller {
         const expiresIn = 60 * 60 // an hour
         const secret = process.env.JWT_SECRET
         const dataStoredInToken: DataStoredInToken = {
-            _id: user.name,
+            _id: user._id,
         }
         return {
             expiresIn,
