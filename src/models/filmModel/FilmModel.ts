@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose"
 import IFilm from "./Film.interface"
 import AgeCategory from "./AgeCategory"
-import FilmTypes from "./FilmTypes"
+import FilmTypesArr from "./FilmTypes"
 
 const FilmSchema = new mongoose.Schema({
     title: {
@@ -18,7 +18,8 @@ const FilmSchema = new mongoose.Schema({
     },
     type: {
         required: true,
-        type: FilmTypes,
+        type: String,
+        enum: FilmTypesArr,
     },
     trailer: {
         required: false,
@@ -30,7 +31,8 @@ const FilmSchema = new mongoose.Schema({
     },
     ageCategory: {
         required: true,
-        type: AgeCategory,
+        type: String,
+        enum: AgeCategory,
     },
     is3D: {
         required: true,

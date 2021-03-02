@@ -1,2 +1,4 @@
 type FilmTypes = "comedy" | "horror" | "action" | "anime"
-export default FilmTypes
+
+const FilmTypesArr: Array<FilmTypes> = ["comedy", "horror", "action", "anime"]
+export default FilmTypesArr

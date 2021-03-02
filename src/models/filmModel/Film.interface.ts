@@ -1,14 +1,14 @@
-import FilmTypes from "./FilmTypes"
-import AgeCategory from "./AgeCategory"
+import FilmTypesArr from "./FilmTypes"
+import AgeCategoryArr from "./AgeCategory"
 
 export default interface IFilm {
     title: string
     producent: string
     mainActors: string[]
-    type: FilmTypes
+    type: typeof FilmTypesArr
     trailer?: string
     filmLength: number
-    ageCategory: AgeCategory
+    ageCategory: typeof AgeCategoryArr
     is3D: boolean
     hours: string[]
     dates: string[]
