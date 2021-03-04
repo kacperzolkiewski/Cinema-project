@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer"
+import puppeteer from "puppeteer"
 
 const PdfPrinter = async (HTMLToPrint: any): Promise<void> => {
     try {
