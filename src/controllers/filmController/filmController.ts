@@ -16,7 +16,7 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.get("/:id", async (req: Request, res: Response) => {
 
-    const id = req.params;
+    const id = req.params.id;
 
     await FilmModel.findById(id)
         .then(resp => {
