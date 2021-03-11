@@ -1,16 +1,23 @@
 {
     "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowSyntheticDefaultImports": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
         "module": "commonjs",
-        "esModuleInterop": true,
-        "target": "es6",
-        "noImplicitAny": true,
-        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "removeComments": true,
+        "skipLibCheck": true,
         "sourceMap": true,
-        "outDir": "./dist",
-        "baseUrl": "./"
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "target": "esnext",
+        "outDir": "./dist"
     },
-    "include": ["src/*"],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "test", "dist", "**/*spec.ts"],
+    "include": ["src/**/*"]
 }
