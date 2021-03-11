@@ -1,10 +1,11 @@
 import mongoose from "mongoose"
+import ITicket from "./Ticket.interface"
 
 const TicketSchema = new mongoose.Schema({
     client: {
         required: true,
         type: mongoose.Types.ObjectId,
-        ref: "User",
+        ref: "UserModel",
     },
     film: {
         required: true,
@@ -19,12 +20,12 @@ const TicketSchema = new mongoose.Schema({
         required: true,
         type: Number,
     },
-    QR_CODE: {
+    qrCode: {
         required: true,
         type: String,
     },
 })
 
-const TicketModel = mongoose.model("TicketModel", TicketSchema)
+const TicketModel = mongoose.model<ITicket & mongoose.Document>("TicketModel", TicketSchema)
 
 export default TicketModel

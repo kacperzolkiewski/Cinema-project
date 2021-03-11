@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import IUser from "./User.interface"
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -30,4 +31,6 @@ const UserSchema = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model("User", UserSchema)
+const UserModel = mongoose.model<IUser & mongoose.Document>("UserModel", UserSchema)
+
+export default UserModel
