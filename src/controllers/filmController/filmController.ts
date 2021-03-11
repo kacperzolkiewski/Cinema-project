@@ -38,5 +38,16 @@ router.post("/",  [validationMiddleware(FilmDto)],async (req: Request, res: Resp
         .catch(e => res.status(500).json({"error": e.message}))
 })
 
+router.patch("/:id",  [validationMiddleware(FilmDto)],async (req: Request, res: Response) => {
+
+    const id = req.params.id
+
+    await FilmModel.findByIdAndUpdate(id,req.body,)
+        .then(resp => {
+            res.status(200).json(resp)
+        })
+        .catch(e => res.status(500).json({"error": e.message}))
+})
+
 
 export default router

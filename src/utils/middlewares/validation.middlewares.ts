@@ -7,6 +7,7 @@ function validationMiddleware<T> (type: any, skipMissingProperties = true): Requ
         validate(plainToClass(type, req.body), {skipMissingProperties})
             .then((errors: ValidationError[]) =>{
                 if (errors.length > 0){
+                    console.log(errors)
                     res.status(400).json({
                         error: errors,
                         data: req.body

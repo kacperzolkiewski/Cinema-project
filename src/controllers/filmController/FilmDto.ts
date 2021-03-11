@@ -17,7 +17,7 @@ class FilmDto {
     // @ts-ignore
     public producent
 
-    @IsString()
+    @IsArray()
     // @ts-ignore
     public mainActions
 
