@@ -1,58 +1,39 @@
-import {
-    IsArray,
-    IsBoolean,
-    IsInt,
-    IsOptional,
-    IsString,
-    Min
-} from 'class-validator'
+import { IsArray, IsBoolean, IsInt, IsOptional, IsString, Min } from "class-validator"
 
 class FilmDto {
+  @IsString()
+  title: string
 
-    @IsString()
-    // @ts-ignore
-    public title
+  @IsString()
+  producent: string
 
-    @IsString()
-    // @ts-ignore
-    public producent
+  @IsArray()
+  mainActions: Array<string>
 
-    @IsArray()
-    // @ts-ignore
-    public mainActions
+  @IsString()
+  type: string
 
-    @IsString()
-    // @ts-ignore
-    public type
+  @IsOptional()
+  @IsString()
+  trailer: string
 
-    @IsOptional()
-    @IsString()
-    // @ts-ignore
-    public trailer
+  @IsInt()
+  @Min(1)
+  filmLength: number
 
-    @IsInt()
-    @Min(1)
-    // @ts-ignore
-    public filmLength
+  @IsString()
+  ageCategory: string
 
-    @IsString()
-    // @ts-ignore
-    public ageCategory
+  @IsBoolean()
+  is3D: boolean
 
-    @IsBoolean()
-    // @ts-ignore
-    public is3D
+  @IsOptional()
+  @IsArray()
+  hours: Array<string>
 
-    @IsOptional()
-    @IsArray()
-    // @ts-ignore
-    public hours
-
-    @IsOptional()
-    @IsArray()
-    // @ts-ignore
-    public dates
-
+  @IsOptional()
+  @IsArray()
+  dates: Array<string>
 }
 
 export default FilmDto
