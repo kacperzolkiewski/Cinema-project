@@ -4,7 +4,7 @@ import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
 import "dotenv/config"
 import * as pino from "pino"
-import filmRouter from "./controllers/filmController/filmController"
+import filmRouter from "./controllers/filmController/film.controller"
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" })
 const expressLogger = expressPino({ logger })

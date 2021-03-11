@@ -31,6 +31,7 @@ module.exports = {
     "prefer-spread": "error",
     semi: ["error", "never"],
     quotes: ["error", "double"],
+    "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {

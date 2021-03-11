@@ -1,6 +1,8 @@
 import { IsArray, IsBoolean, IsInt, IsOptional, IsString, Min } from "class-validator"
+import AgeCategory from "../../models/film/AgeCategory"
+import FilmTypes from "../../models/film/FilmTypes"
 
-class FilmDto {
+class FilmDTO {
   @IsString()
   title: string
 
@@ -11,7 +13,7 @@ class FilmDto {
   mainActions: Array<string>
 
   @IsString()
-  type: string
+  type: typeof FilmTypes
 
   @IsOptional()
   @IsString()
@@ -22,7 +24,7 @@ class FilmDto {
   filmLength: number
 
   @IsString()
-  ageCategory: string
+  ageCategory: typeof AgeCategory
 
   @IsBoolean()
   is3D: boolean
@@ -36,4 +38,4 @@ class FilmDto {
   dates: Array<string>
 }
 
-export default FilmDto
+export default FilmDTO

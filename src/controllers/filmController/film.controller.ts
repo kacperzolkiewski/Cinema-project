@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express"
 import FilmModel from "../../models/film/FilmModel"
-import validationMiddleware from "../../utils/middlewares/validation.middlewares"
-import FilmDto from "./FilmDto"
+import validationMiddleware from "../../utils/middlewares/validation.middleware"
+import FilmDTO from "./Film.dto"
 
 const router = Router()
 
@@ -27,7 +27,7 @@ router.get("/:id", async (req: Request, res: Response) => {
     .catch((e) => res.status(500).json({ error: e.message }))
 })
 
-router.post("/", [validationMiddleware(FilmDto)], async (req: Request, res: Response) => {
+router.post("/", [validationMiddleware(FilmDTO)], async (req: Request, res: Response) => {
   await FilmModel.create(req.body)
     .then((resp) => {
       res.status(201).json(resp)
@@ -35,7 +35,7 @@ router.post("/", [validationMiddleware(FilmDto)], async (req: Request, res: Resp
     .catch((e) => res.status(500).json({ error: e.message }))
 })
 
-router.patch("/:id", [validationMiddleware(FilmDto)], async (req: Request, res: Response) => {
+router.patch("/:id", [validationMiddleware(FilmDTO)], async (req: Request<{ id?: string }, {}, FilmDTO>, res: Response) => {
   const id = req.params.id
 
   await FilmModel.findByIdAndUpdate(id, req.body)
