@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose"
-import IFilm from "./Film.interface"
+import IFilm from "./Film.model"
 import AgeCategory from "./AgeCategory"
 import FilmTypesArr from "./FilmTypes"
 
