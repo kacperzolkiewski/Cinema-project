@@ -50,4 +50,12 @@ router.patch("/:id",  [validationMiddleware(FilmDto)],async (req: Request, res: 
 })
 
 
+router.delete("/:id", async (req: Request, res: Response)=>{
+    const id = req.params.id;
+
+    await FilmModel.findByIdAndDelete(id)
+        .then(resp => res.status(200).json(resp))
+        .catch(e => res.status(500).json(e.message))
+})
+
 export default router
