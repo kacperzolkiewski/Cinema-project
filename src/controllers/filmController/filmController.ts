@@ -1,9 +1,11 @@
 import {Router, Request, Response} from 'express'
 import FilmModel from "../../models/filmModel/FilmModel";
+import validationMiddleware from "../../utils/middlewares/validation.middlewares";
+import FilmDto from "./FilmDto";
 
 const router = Router();
 
-router.get("/", async (req: Request, res: Response)=>{
+router.get("/", async (req: Request, res: Response) => {
 
     await FilmModel.find()
         .then(resp => {
@@ -12,19 +14,29 @@ router.get("/", async (req: Request, res: Response)=>{
         .catch(e => res.status(500).json({"error": e.message}))
 })
 
-router.get("/:id", async (req: Request, res: Response)=> {
+router.get("/:id", async (req: Request, res: Response) => {
+
     const id = req.params;
+
     await FilmModel.findById(id)
-        .then( resp => {
-            if (resp){
+        .then(resp => {
+            if (resp) {
                 res.status(200).json(resp)
-            } else{
+            } else {
                 res.status(404).json({"message": "Film with this ID"})
             }
         })
-        .catch( e => res.status(500).json({"error": e.message}))
+        .catch(e => res.status(500).json({"error": e.message}))
 })
 
+router.post("/",  [validationMiddleware(FilmDto)],async (req: Request, res: Response) => {
+
+    await FilmModel.create(req.body)
+        .then(resp => {
+            res.status(201).json(resp)
+        })
+        .catch(e => res.status(500).json({"error": e.message}))
+})
 
 
 export default router
