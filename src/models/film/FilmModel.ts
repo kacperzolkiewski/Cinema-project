@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose"
-import IFilm from "./Film.model"
 import AgeCategory from "./AgeCategory"
+import IFilm from "./Film.model"
 import FilmTypesArr from "./FilmTypes"
 
 const FilmSchema = new mongoose.Schema({
