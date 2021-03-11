@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import ITicket from "./Ticket.interface"
+import ITicket from "./Ticket.model"
 
 const TicketSchema = new mongoose.Schema({
     client: {
