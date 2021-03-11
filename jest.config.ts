@@ -1,7 +1,4 @@
 export default {
-    clearMocks: true,
-    coverageDirectory: "coverage",
-
     moduleFileExtensions: ["js", "ts"],
 
     restoreMocks: true,
