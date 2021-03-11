@@ -1,8 +1,10 @@
+import * as bodyParser from "body-parser"
 import * as express from "express"
 import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
 import "dotenv/config"
 import * as pino from "pino"
+import filmRouter from "./controllers/filmController/film.controller"
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" })
 const expressLogger = expressPino({ logger })
@@ -11,6 +13,7 @@ const app = express()
 const port = process.env.PORT || 8080
 
 app.use(expressLogger)
+app.use(bodyParser.json())
 
 const connectMongoDB = async (): Promise<void> => {
   const uri = process.env.MONGODB_URI || ""
@@ -33,5 +36,7 @@ app.get("/", (req, res) => {
   logger.debug("Calling res.send")
   res.send("Hello World!")
 })
+
+app.use("/api/films", filmRouter)
 
 app.listen(port)
