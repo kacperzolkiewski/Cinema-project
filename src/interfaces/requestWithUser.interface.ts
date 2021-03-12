@@ -1,8 +1,8 @@
 import { Request } from "express"
-import User from "users/user.interface"
+import User from "../models/user/User.interface"
 
 interface RequestWithUser extends Request {
-    user: User
+  user: User
 }
 
-export default RequestWitUser
+export default RequestWithUser

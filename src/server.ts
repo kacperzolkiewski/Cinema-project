@@ -1,7 +1,7 @@
 import "dotenv/config"
 import App from "./app"
-import validateEnv from "./utils/validateEnv"
 import AuthenticationController from "./authentication/authentication.controller"
+import validateEnv from "./utils/validateEnv"
 
 validateEnv()
 
