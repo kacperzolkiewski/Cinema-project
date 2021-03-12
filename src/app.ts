@@ -2,9 +2,11 @@ import * as bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 import express from "express"
 import * as mongoose from "mongoose"
+import pino from "pino"
 import Controller from "./interfaces/controller.interface"
 import errorMiddleware from "./middleware/error.middleware"
 
+const logger = pino({ level: process.env.LOG_LEVEL || "info" })
 class App {
   public app: express.Application
 
