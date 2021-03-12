@@ -10,7 +10,7 @@ import TokenData from "../interfaces/tokenData.interface"
 import validationMiddleware from "../middleware/validation.middleware"
 import CreateUserDto from "../models/User.dto"
 import userModel from "./../models/User"
-import LogInDto from "./logIn.dto"
+import LogInDto from "./login.dto"
 import PasswordPolicyException from "../exceptions/PasswordPolicyException"
 
 class AuthenticationController implements Controller {
