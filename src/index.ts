@@ -4,37 +4,7 @@ import "dotenv/config"
 import pino from "pino"
 import expressPino from "express-pino-logger"
 import swaggerUi from "swagger-ui-express"
-import test from "./routes/test"
-
-const swaggerDocument = {
-    "swagger": "2.0",
-    "info": {
-        "title": "Cinema App",
-        "description": "An website app for cinema",
-        "version": "1.0"
-    },
-    "produces": ["application/json"],
-    "paths": {
-        "/test": {
-            "get": {
-                "tags": ["/test"],
-                "description": "Taki fajny description",
-                "parameters": [{
-                    "name": "test",
-                    "in": "formData",
-                    "type": "array",
-                    "collectionFormat": "multi",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                { "name": "profileId", "in": "formData", "required": true, "type": "string" },
-                { "name": "file", "in": "formData", "type": "file", "required": "true" }],
-                "responses": {}
-            }
-        }
-    }
-}
+import { swaggerDocument } from "./swaggerDocument"
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" })
 const expressLogger = expressPino({ logger })
@@ -67,7 +37,5 @@ app.get("/", (req, res) => {
     logger.debug("Calling res.send")
     res.send("Hello World!")
 })
-
-app.use("/test", test)
 
 app.listen(port)
