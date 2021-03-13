@@ -10,5 +10,5 @@ const userSchema = new mongoose.Schema({
   dateOfBirth: String
 })
 
-const userModel = mongoose.model<User & mongoose.Document>("User", userSchema)
+const userModel = mongoose.model<User & mongoose.Document>("UserModel", userSchema)
 export default userModel

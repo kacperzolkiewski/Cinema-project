@@ -14,8 +14,8 @@ import userModel from "../models/user/User.model"
 import validationMiddleware from "../utils/middlewares/validation.middleware"
 
 class AuthenticationController implements Controller {
-  public path = "/auth"
-  public router = Router()
+  public readonly path = "/auth"
+  public readonly router = Router()
   private user = userModel
 
   constructor() {
