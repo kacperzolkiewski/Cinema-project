@@ -1,42 +1,78 @@
 import * as bodyParser from "body-parser"
-import * as express from "express"
+import cookieParser = require("cookie-parser")
+import express = require("express")
 import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
-import "dotenv/config"
-import * as pino from "pino"
+import pino from "pino"
+import AuthenticationController from "./authentication/authentication.controller"
 import filmRouter from "./controllers/filmController/film.controller"
+import errorMiddleware from "./middleware/error.middleware"
+import "dotenv/config"
+import validateEnv from "./utils/validateEnv"
 
-const logger = pino({ level: process.env.LOG_LEVEL || "info" })
-const expressLogger = expressPino({ logger })
+class App {
+  public app: express.Application
+  public logger: pino.Logger
 
-const app = express()
-const port = process.env.PORT || 8080
+  constructor() {
+    this.app = express()
+    this.logger = pino({ level: process.env.LOG_LEVEL || "info" })
 
-app.use(expressLogger)
-app.use(bodyParser.json())
+    this.initializeLogger()
+    this.connectToTheDatabase()
+    this.initializeMiddlewares()
+    this.initializeControllers()
+    this.initializeErrorHandling()
+  }
 
-const connectMongoDB = async (): Promise<void> => {
-  const uri = process.env.MONGODB_URI || ""
-  await mongoose
-    .connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
+  public listen(): void {
+    this.app.listen(process.env.PORT, () => {
+      this.logger.info(`App listening on the port ${process.env.PORT}`)
     })
-    .then(
-      () => logger.info("MongoDB connected"),
-      (error) => {
-        logger.error(error)
-      }
-    )
+  }
+
+  private initializeLogger(): void {
+    const expressLogger = expressPino(this.logger)
+    this.app.use(expressLogger)
+  }
+
+  private initializeMiddlewares(): void {
+    this.app.use(bodyParser.json())
+    this.app.use(cookieParser())
+  }
+
+  private initializeErrorHandling(): void {
+    this.app.use(errorMiddleware)
+  }
+
+  private initializeControllers(): void {
+    const typedControllers = [new AuthenticationController()]
+
+    typedControllers.forEach((controller) => {
+      this.app.use("/", controller.router)
+    })
+
+    this.app.use("/api/films", filmRouter)
+  }
+
+  private async connectToTheDatabase(): Promise<void> {
+    const uri = process.env.MONGODB_URI || ""
+    await mongoose
+      .connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      })
+      .then(
+        () => this.logger.info("MongoDB connected"),
+        (error) => {
+          this.logger.error(error)
+        }
+      )
+  }
 }
 
-connectMongoDB()
+validateEnv()
 
-app.get("/", (req, res) => {
-  logger.debug("Calling res.send")
-  res.send("Hello World!")
-})
+const app = new App()
 
-app.use("/api/films", filmRouter)
-
-app.listen(port)
+app.listen()

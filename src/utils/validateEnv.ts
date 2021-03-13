@@ -2,10 +2,9 @@ import { cleanEnv, str, port } from "envalid"
 
 function validateEnv(): void {
   cleanEnv(process.env, {
-    MONGO_PASSWORD: str(),
-    MONGO_PATH: str(),
-    MONGO_USER: str(),
+    MONGODB_URI: str(),
     PORT: port()
+    // tu powinno być wszucane wszystko to co w pliku .env definiujecie
   })
 }
 
