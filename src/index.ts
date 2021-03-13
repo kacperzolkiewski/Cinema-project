@@ -6,7 +6,7 @@ import * as mongoose from "mongoose"
 import pino from "pino"
 import AuthenticationController from "./authentication/authentication.controller"
 import filmRouter from "./controllers/filmController/film.controller"
-import errorMiddleware from "./middleware/error.middleware"
+import errorMiddleware from "./utils/middlewares/error.middleware"
 import "dotenv/config"
 import validateEnv from "./utils/validateEnv"
 
