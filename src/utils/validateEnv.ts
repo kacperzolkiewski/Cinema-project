@@ -4,7 +4,6 @@ function validateEnv(): void {
   cleanEnv(process.env, {
     MONGODB_URI: str(),
     PORT: port()
-    // tu powinno być wszucane wszystko to co w pliku .env definiujecie
   })
 }
 

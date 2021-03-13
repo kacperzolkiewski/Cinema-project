@@ -40,6 +40,7 @@
         "express": "^4.17.1",
         "express-pino-logger": "^6.0.0",
         "jsonwebtoken": "^8.5.1",
+        "lint": "^0.7.0",
         "lodash": "^4.17.21",
         "mongodb": "^3.6.4",
         "nodemon": "^2.0.7",
