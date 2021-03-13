@@ -14,6 +14,7 @@ class CreateUserDto {
   public phoneNumber: string
 
   @IsEmail()
+  @MaxLength(64)
   public email: string
 
   @IsString()
@@ -22,6 +23,7 @@ class CreateUserDto {
   public password: string
 
   @IsDate()
+  @MaxLength(10)
   public dateOfBirth: string
 }
 

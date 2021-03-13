@@ -3,8 +3,11 @@ import cookieParser from "cookie-parser"
 import express from "express"
 import * as mongoose from "mongoose"
 import pino from "pino"
+import AuthenticationController from "./authentication/authentication.controller"
 import Controller from "./interfaces/controller.interface"
 import errorMiddleware from "./middleware/error.middleware"
+import "dotenv/config"
+import validateEnv from "./utils/validateEnv"
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" })
 class App {
@@ -45,5 +48,11 @@ class App {
     mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`)
   }
 }
+
+validateEnv()
+
+const app = new App([new AuthenticationController()])
+
+app.listen()
 
 export default App

@@ -2,8 +2,8 @@ import { NextFunction, Response } from "express"
 import * as jwt from "jsonwebtoken"
 import AuthenticationTokenMissingException from "../exceptions/AuthenticationTokenMissingException"
 import WrongAuthenticationTokenException from "../exceptions/WrongAuthenticationTokenException"
+import RequestWithUser from "../interfaces/RequestWithUser.interface"
 import DataInToken from "../interfaces/dataInToken"
-import RequestWithUser from "../interfaces/requestWithUser.interface"
 import userModel from "../models/user/User.model"
 
 async function authMiddleware(request: RequestWithUser, response: Response, next: NextFunction): Promise<void> {
