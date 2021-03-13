@@ -4,12 +4,13 @@ import express from "express"
 import * as mongoose from "mongoose"
 import pino from "pino"
 import AuthenticationController from "./authentication/authentication.controller"
-import Controller from "./interfaces/controller.interface"
+import Controller from "./interfaces/Controller.interface"
 import errorMiddleware from "./middleware/error.middleware"
 import "dotenv/config"
 import validateEnv from "./utils/validateEnv"
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" })
+
 class App {
   public app: express.Application
 

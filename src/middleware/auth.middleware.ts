@@ -18,10 +18,10 @@ async function authMiddleware(request: RequestWithUser, response: Response, next
         request.user = user
         next()
       } else {
-        next(new WrongAuthenticationTokenException())
+        throw new WrongAuthenticationTokenException()
       }
     } catch (error) {
-      next(new WrongAuthenticationTokenException())
+      throw new WrongAuthenticationTokenException()
     }
   } else {
     next(new AuthenticationTokenMissingException())
