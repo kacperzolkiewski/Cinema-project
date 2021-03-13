@@ -24,7 +24,7 @@ async function authMiddleware(request: RequestWithUser, response: Response, next
       throw new WrongAuthenticationTokenException()
     }
   } else {
-    next(new AuthenticationTokenMissingException())
+    throw new AuthenticationTokenMissingException()
   }
 }
 

@@ -1,3 +1,4 @@
+import { isEmail } from "class-validator"
 import mongoose from "mongoose"
 import IUser from "./User.interface"
 
@@ -16,9 +17,11 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    trim: true,
     lowercase: true,
     unique: true,
     required: [true, "Email required"],
+    validate: [isEmail, "Please enter a valid email address"],
     match: [/\S+@\S+\.\S+/, "is invalid"]
   },
   password: {
