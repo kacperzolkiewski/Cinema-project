@@ -1,6 +1,7 @@
 import * as bcrypt from "bcrypt"
 import { Router, Request, Response, NextFunction } from "express"
 import * as jwt from "jsonwebtoken"
+import LogInDto from "../authentication/login.dto"
 import PasswordPolicyException from "../exceptions/PasswordPolicyException"
 import UserWithThatEmailAlreadyExistsException from "../exceptions/UserWithThatEmailAlreadyExistsException"
 import WrongCredentialsException from "../exceptions/WrongCredentialsException"
@@ -9,9 +10,8 @@ import TokenData from "../interfaces/TokenData.interface"
 import DataStoredInToken from "../interfaces/dataInToken"
 import CreateUserDto from "../models/user/User.dto"
 import User from "../models/user/User.interface"
+import userModel from "../models/user/User.model"
 import validationMiddleware from "../utils/middlewares/validation.middleware"
-import userModel from "./../models/user/User.model"
-import LogInDto from "./login.dto"
 
 class AuthenticationController implements Controller {
   public path = "/auth"
