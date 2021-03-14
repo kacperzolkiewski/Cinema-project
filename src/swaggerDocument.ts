@@ -10,7 +10,7 @@ export const swaggerDocument = {
         "/api/films": {
             get: {
                 tags: ["films"],
-                description: "Endpoints to cooperate with films gallery",
+                description: "Endpoint to return films collection",
                 parameters: [
                     {
                         name: "Film",
@@ -20,12 +20,42 @@ export const swaggerDocument = {
                 ],
                 responses: {
                     "200": {
-                        description: "Returns an array of films",
+                        description: "Returns an array of film objects",
                         schema: {
                             type: "array",
                             items: {
                                 $ref: "#/definitions/filmModel",
                             },
+                        },
+                    },
+                },
+            },
+            post: {
+                tags: ["films"],
+                description: "Endpoint to create new film object",
+            },
+        },
+        "/api/films/{id}": {
+            get: {
+                tags: ["films"],
+                description: "Endpoint to retrun film with specific id",
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        required: "true",
+                        description: "Valid film id from database",
+                        schema: {
+                            type: "string",
+                            format: "uuid",
+                        },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Returns a film object",
+                        schema: {
+                            $ref: "#/definitions/filmModel",
                         },
                     },
                 },
@@ -164,6 +194,19 @@ export const swaggerDocument = {
                     required: "true",
                     type: "string",
                     format: "date",
+                },
+            },
+        },
+        cinemaHallModel: {
+            type: "object",
+            properties: {
+                name: {
+                    type: "string",
+                    required: "true",
+                },
+                numberOfSeats: {
+                    type: "number",
+                    required: "true",
                 },
             },
         },
