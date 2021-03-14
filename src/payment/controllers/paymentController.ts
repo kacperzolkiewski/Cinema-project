@@ -14,7 +14,7 @@ export const createPayment = (req: Request, res: Response): void => {
             payment_method: "paypal",
         },
         redirect_urls: {
-            return_url: "http://localhost:3000/success",
+            return_url: `http://localhost:3000/success?quantity=${req.query.quantity}`,
             cancel_url: "http://localhost:3000/cancel",
         },
         transactions: [
@@ -22,19 +22,19 @@ export const createPayment = (req: Request, res: Response): void => {
                 item_list: {
                     items: [
                         {
-                            name: "Red Sox Hat",
+                            name: JSON.stringify(req.query.name),
                             sku: "001",
                             price: "25.00",
-                            currency: "USD",
-                            quantity: 1,
+                            currency: "PLN",
+                            quantity: +req.query.quantity,
                         },
                     ],
                 },
                 amount: {
-                    currency: "USD",
-                    total: "25.00",
+                    currency: "PLN",
+                    total: `${+req.query.quantity * 25.0}`,
                 },
-                description: "Hat for the best team ever",
+                description: JSON.stringify(req.query.description),
             },
         ],
     }
@@ -50,6 +50,29 @@ export const createPayment = (req: Request, res: Response): void => {
     })
 }
 
-// export const successPayment = (req: Request, res: Response): void => {}
+export const successPayment = (req: Request, res: Response): void => {
+    const payerId: string = JSON.stringify(req.query.PayerID)
+    const paymentId: string = JSON.stringify(req.query.paymentId)
 
-// export const refundPayment = (req: Request, res: Response): void => {}
+    const execute_payment_json = {
+        payer_id: payerId,
+        transactions: [
+            {
+                amount: {
+                    currency: "PLN",
+                    total: +req.query.quantity * 25.0,
+                },
+            },
+        ],
+    }
+
+    paypal.payment.execute(paymentId, execute_payment_json, (error: SDKError, payment: Payment): void => {
+        if (error) {
+            console.log(error.response)
+            throw error
+        } else {
+            console.log(JSON.stringify(payment))
+            res.json(payment)
+        }
+    })
+}
