@@ -10,7 +10,7 @@ class FilmDTO {
   producent: string
 
   @IsArray()
-  mainActions: Array<string>
+  mainActors: Array<string>
 
   @IsString()
   type: typeof FilmTypes
