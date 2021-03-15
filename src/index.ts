@@ -4,7 +4,7 @@ import express = require("express")
 import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
 import pino from "pino"
-import filmRouter from "./controllers/filmController/film.controller"
+import FilmController from "./controllers/filmController/film.controller"
 import AuthenticationController from "./routes/authentication.controller"
 import errorMiddleware from "./utils/middlewares/error.middleware"
 import "dotenv/config"
@@ -46,13 +46,11 @@ class App {
   }
 
   private initializeControllers(): void {
-    const typedControllers = [new AuthenticationController()]
+    const typedControllers = [new AuthenticationController(), new FilmController()]
 
     typedControllers.forEach((controller) => {
       this.app.use("/", controller.router)
     })
-
-    this.app.use("/api/films", filmRouter)
   }
 
   private async connectToTheDatabase(): Promise<void> {
