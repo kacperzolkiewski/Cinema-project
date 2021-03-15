@@ -42,17 +42,6 @@ export const createPayment = (req: Request, res: Response): void => {
     ]
   }
 
-<<<<<<< HEAD
-    paypal.payment.create(sample_payment_json, (error: SDKError, payment: Payment): void => {
-        if (error) {
-            throw error
-        } else {
-            payment.links!.forEach((link: paypal.Link) => {
-                link.rel === "approval_url" && res.redirect(link.href)
-            })
-        }
-    })
-=======
   paypal.payment.create(sample_payment_json, (error: SDKError, payment: Payment): void => {
     if (error) {
       throw error
@@ -62,7 +51,6 @@ export const createPayment = (req: Request, res: Response): void => {
       })
     }
   })
->>>>>>> b291d03 (Create success endpoint, implementing api to project)
 }
 
 export const successPayment = (req: Request, res: Response): void => {

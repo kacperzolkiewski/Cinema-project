@@ -1,5 +1,5 @@
 export default {
-    moduleFileExtensions: ["js", "ts"],
+    moduleFileExtensions: ["js", "ts", "json"],
     restoreMocks: true,
     rootDir: "src",
     testRegex: ".*\\.spec\\.ts$",
