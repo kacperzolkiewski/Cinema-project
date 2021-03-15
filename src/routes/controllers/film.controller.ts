@@ -2,12 +2,12 @@ import { Router, Request, Response } from "express"
 import Controller from "../../interfaces/Controller.interface"
 import FilmModel from "../../models/film/FilmModel"
 import validationMiddleware from "../../utils/middlewares/validation.middleware"
-import FilmDTO from "./Film.dto"
+import FilmDTO from "../dtos/Film.dto"
 
 type RequestParam = { id?: string }
 
 class FilmController implements Controller {
-  public readonly path: string = "films"
+  public readonly path: string = "/films"
   public readonly router: Router = Router()
 
   constructor() {
