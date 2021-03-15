@@ -6,7 +6,7 @@ import CinemaHallDTO from "../dtos/CinemaHall.dto"
 
 type RequestParams = { id?: string }
 
-class CinemaHall implements Controller {
+class CinemaHallController implements Controller {
   readonly path: string = "/halls"
   readonly router: Router = Router()
 
@@ -58,4 +58,4 @@ class CinemaHall implements Controller {
   }
 }
 
-export default CinemaHall
+export default CinemaHallController
