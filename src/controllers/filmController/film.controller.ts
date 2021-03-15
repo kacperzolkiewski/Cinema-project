@@ -15,11 +15,11 @@ class FilmController implements Controller {
   }
 
   private initRoutes(): void {
-    this.router.get("/", this.getAllFilms)
-    this.router.get("/:id", this.getFilmById)
-    this.router.post("/", [validationMiddleware(FilmDTO)], this.addFilm)
-    this.router.patch("/:id", [validationMiddleware(FilmDTO)], this.updateFilm)
-    this.router.delete("/:id", this.deleteFilm)
+    this.router.get(`${this.path}/`, this.getAllFilms)
+    this.router.get(`${this.path}/:id`, this.getFilmById)
+    this.router.post(`${this.path}`, [validationMiddleware(FilmDTO)], this.addFilm)
+    this.router.patch(`${this.path}/:id`, [validationMiddleware(FilmDTO)], this.updateFilm)
+    this.router.delete(`${this.path}/:id`, this.deleteFilm)
   }
 
   private getAllFilms = async (req: Request, res: Response): Promise<void> => {
