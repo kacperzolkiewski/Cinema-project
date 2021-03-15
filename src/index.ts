@@ -5,7 +5,10 @@ import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
 import pino from "pino"
 import FilmController from "./controllers/filmController/film.controller"
+import { serve, setup } from "swagger-ui-express"
+import filmRouter from "./controllers/filmController/film.controller"
 import AuthenticationController from "./routes/authentication.controller"
+import { swaggerDocument } from "./swaggerDocumentation/swaggerDocument"
 import errorMiddleware from "./utils/middlewares/error.middleware"
 import "dotenv/config"
 import validateEnv from "./utils/validateEnv"
@@ -49,8 +52,9 @@ class App {
     const typedControllers = [new AuthenticationController(), new FilmController()]
 
     typedControllers.forEach((controller) => {
-      this.app.use("/", controller.router)
+      this.app.use("/api", controller.router)
     })
+    this.app.use("/docs", serve, setup(swaggerDocument))
   }
 
   private async connectToTheDatabase(): Promise<void> {
@@ -72,5 +76,4 @@ class App {
 validateEnv()
 
 const app = new App()
-
 app.listen()
