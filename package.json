@@ -44,6 +44,8 @@
         "lint": "^0.7.0",
         "lodash": "^4.17.21",
         "mongodb": "^3.6.4",
+        "nodemon": "^2.0.7",
+        "paypal-rest-sdk": "^1.8.1",
         "pino": "^6.11.2",
         "pino-logger": "^1.0.0",
         "prettify": "^0.1.7",
