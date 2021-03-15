@@ -7,7 +7,7 @@ import FilmDTO from "../dtos/Film.dto"
 type RequestParam = { id?: string }
 
 class FilmController implements Controller {
-  public readonly path: string = "films"
+  public readonly path: string = "/films"
   public readonly router: Router = Router()
 
   constructor() {
