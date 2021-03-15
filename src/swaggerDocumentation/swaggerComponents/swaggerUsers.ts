@@ -42,7 +42,7 @@ export const userEndpoints = {
       }
     }
   },
-  "auth/login": {
+  "/auth/login": {
     post: {
       tags: ["users"],
       description: "Endpoint to login user.",
@@ -98,7 +98,7 @@ export const userEndpoints = {
       }
     }
   },
-  "auth/logout": {
+  "/auth/logout": {
     post: {
       tags: ["users"],
       description: "Endpoint to logout user.",
