@@ -4,7 +4,7 @@ import "dotenv/config"
 import pino from "pino"
 import expressPino from "express-pino-logger"
 import swaggerUi from "swagger-ui-express"
-import { swaggerDocument } from "./swaggerDocument"
+import { swaggerDocument } from "./swaggerDocumentation/swaggerDocument"
 
 const logger = pino({ level: process.env.LOG_LEVEL || "info" })
 const expressLogger = expressPino({ logger })
