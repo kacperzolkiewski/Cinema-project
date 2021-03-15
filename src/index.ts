@@ -5,7 +5,7 @@ import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
 import pino from "pino"
 import { serve, setup } from "swagger-ui-express"
-import filmRouter from "./controllers/filmController/film.controller"
+import FilmController from "./controllers/filmController/film.controller"
 import AuthenticationController from "./routes/authentication.controller"
 import { swaggerDocument } from "./swaggerDocumentation/swaggerDocument"
 import errorMiddleware from "./utils/middlewares/error.middleware"
@@ -48,13 +48,11 @@ class App {
   }
 
   private initializeControllers(): void {
-    const typedControllers = [new AuthenticationController()]
+    const typedControllers = [new AuthenticationController(), new FilmController()]
 
     typedControllers.forEach((controller) => {
-      this.app.use("/", controller.router)
+      this.app.use("/api", controller.router)
     })
-
-    this.app.use("/api/films", filmRouter)
     this.app.use("/docs", serve, setup(swaggerDocument))
   }
 

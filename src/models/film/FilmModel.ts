@@ -12,7 +12,7 @@ const FilmSchema = new mongoose.Schema({
     required: true,
     type: String
   },
-  mainActions: {
+  mainActors: {
     required: true,
     type: Array
   },
