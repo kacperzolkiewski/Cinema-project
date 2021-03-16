@@ -1,8 +1,9 @@
 import "dotenv/config"
 import { Router, Request, Response } from "express"
 import * as paypal from "paypal-rest-sdk"
-import { SDKError, Payment, PaymentResponse, ExecuteRequestJson } from "paypal-rest-sdk"
+import { SDKError, Payment, PaymentResponse } from "paypal-rest-sdk"
 import Controller from "../../interfaces/Controller.interface"
+import ExecuteRequestJson from "../../interfaces/payment.interface"
 import { samplePayment, executePayment } from "../../templates/payments/payment.templates"
 
 export type RequestParams1 = {

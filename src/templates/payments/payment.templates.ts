@@ -1,5 +1,6 @@
 import { Request } from "express"
-import { Payment, ExecuteRequestJson } from "paypal-rest-sdk"
+import { Payment } from "paypal-rest-sdk"
+import ExecuteRequestJson from "../../interfaces/payment.interface"
 import { RequestParams1, RequestParams2 } from "../../routes/controllers/payment.controller"
 
 export const samplePayment = (req: Request<{}, {}, {}, RequestParams1>): Payment => {
