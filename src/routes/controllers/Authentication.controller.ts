@@ -11,7 +11,7 @@ import CreateUserDto from "../../models/user/User.dto"
 import User from "../../models/user/User.interface"
 import userModel from "../../models/user/User.model"
 import validationMiddleware from "../../utils/middlewares/validation.middleware"
-import LogInDto from "../dtos/login.dto"
+import LoginDto from "../dtos/Login.dto"
 
 class AuthenticationController implements Controller {
   public readonly path = "/auth"
@@ -24,7 +24,7 @@ class AuthenticationController implements Controller {
 
   private initializeRoutes(): void {
     this.router.post(`${this.path}/register`, validationMiddleware(CreateUserDto), this.registration)
-    this.router.post(`${this.path}/login`, validationMiddleware(LogInDto), this.loggingIn)
+    this.router.post(`${this.path}/login`, validationMiddleware(LoginDto), this.loggingIn)
     this.router.post(`${this.path}/logout`, this.loggingOut)
   }
 
@@ -48,7 +48,7 @@ class AuthenticationController implements Controller {
   }
 
   private loggingIn = async (request: Request, response: Response): Promise<void> => {
-    const logInData: LogInDto = request.body
+    const logInData: LoginDto = request.body
     const user = await this.user.findOne({ email: logInData.email })
     if (user) {
       const isPasswordMatching = await bcrypt.compare(logInData.password, user.password)

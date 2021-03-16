@@ -1,9 +1,9 @@
 import * as mongoose from "mongoose"
 import * as supertest from "supertest"
 import App from "../../../../App"
-import AuthenticationController from "./../../authentication.controller"
-import FilmController from "./../../film.controller"
-import PaymentController from "./../../payment.controller"
+import AuthenticationController from "../../Authentication.controller"
+import PaymentController from "../../Payment.controller"
+import FilmController from "./../../Film.controller"
 import { mockMatchResponse, mockHigherTotal, mockUnsuccessfulTotal, mockSamplePayment } from "./__mocks__/mockResponses"
 
 const app = new App([new AuthenticationController(), new FilmController(), new PaymentController()])
