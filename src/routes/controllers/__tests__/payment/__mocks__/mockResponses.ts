@@ -1,4 +1,4 @@
-export const mockResponse1 = {
+export const mockMatchResponse = {
   payer_id: "EPSETXNXPKL6C",
   transactions: [
     {
@@ -10,7 +10,7 @@ export const mockResponse1 = {
   ]
 }
 
-export const mockResponse2 = {
+export const mockHigherTotal = {
   payer_id: "9P857MTZQ0XMX",
   transactions: [
     {
@@ -22,19 +22,7 @@ export const mockResponse2 = {
   ]
 }
 
-export const mockResponse3 = {
-  payer_id: "1D0SCG39STJ39",
-  transactions: [
-    {
-      amount: {
-        currency: "PLN",
-        total: "50.0"
-      }
-    }
-  ]
-}
-
-export const mockResponse4 = {
+export const mockUnsuccessfulTotal = {
   payer_id: "5ED0L94IQVTEA",
   transactions: [
     {
@@ -46,7 +34,7 @@ export const mockResponse4 = {
   ]
 }
 
-export const mockResponse5 = {
+export const mockSamplePayment = {
   intent: "sale",
   payer: {
     payment_method: "paypal"

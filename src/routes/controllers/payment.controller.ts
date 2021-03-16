@@ -6,13 +6,13 @@ import Controller from "../../interfaces/Controller.interface"
 import ExecuteRequestJson from "../../interfaces/payment.interface"
 import { samplePayment, executePayment } from "../../templates/payments/payment.templates"
 
-export type RequestParams1 = {
+export type RequestParamsPay = {
   name: string
   quantity: number
   description: string
 }
 
-export type RequestParams2 = {
+export type RequestParamsSuccess = {
   quantity: number
   PayerID: string
   paymentId: string
@@ -38,7 +38,7 @@ class PaymentController implements Controller {
     this.router.post(`${this.path}/success`, this.successPayment)
   }
 
-  private createPayment = (req: Request<{}, {}, {}, RequestParams1>, res: Response): void => {
+  private createPayment = (req: Request<{}, {}, {}, RequestParamsPay>, res: Response): void => {
     const createPaymentJson: Payment = samplePayment(req)
 
     paypal.payment.create(createPaymentJson, (error: SDKError, payment: PaymentResponse): void => {
@@ -52,7 +52,7 @@ class PaymentController implements Controller {
     })
   }
 
-  private successPayment = (req: Request<{}, {}, {}, RequestParams2>, res: Response): void => {
+  private successPayment = (req: Request<{}, {}, {}, RequestParamsSuccess>, res: Response): void => {
     const executePayemntJson: ExecuteRequestJson = executePayment(req)
 
     paypal.payment.execute(req.query.paymentId, executePayemntJson, (error: SDKError, payment: Payment): void => {

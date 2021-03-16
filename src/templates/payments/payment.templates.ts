@@ -1,9 +1,9 @@
 import { Request } from "express"
 import { Payment } from "paypal-rest-sdk"
 import ExecuteRequestJson from "../../interfaces/payment.interface"
-import { RequestParams1, RequestParams2 } from "../../routes/controllers/payment.controller"
+import { RequestParamsPay, RequestParamsSuccess } from "../../routes/controllers/payment.controller"
 
-export const samplePayment = (req: Request<{}, {}, {}, RequestParams1>): Payment => {
+export const samplePayment = (req: Request<{}, {}, {}, RequestParamsPay>): Payment => {
   return {
     intent: "sale",
     payer: {
@@ -36,7 +36,7 @@ export const samplePayment = (req: Request<{}, {}, {}, RequestParams1>): Payment
   }
 }
 
-export const executePayment = (req: Request<{}, {}, {}, RequestParams2>): ExecuteRequestJson => {
+export const executePayment = (req: Request<{}, {}, {}, RequestParamsSuccess>): ExecuteRequestJson => {
   return {
     payer_id: req.query.PayerID,
     transactions: [

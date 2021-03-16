@@ -4,7 +4,7 @@ import App from "../../../../App"
 import AuthenticationController from "./../../authentication.controller"
 import FilmController from "./../../film.controller"
 import PaymentController from "./../../payment.controller"
-import { mockResponse1, mockResponse2, mockResponse3, mockResponse4, mockResponse5 } from "./__mocks__/mockResponses"
+import { mockMatchResponse, mockHigherTotal, mockUnsuccessfulTotal, mockSamplePayment } from "./__mocks__/mockResponses"
 
 const app = new App([new AuthenticationController(), new FilmController(), new PaymentController()])
 const server = app.listen("8080")
@@ -13,7 +13,7 @@ describe("Create matching 'execute_payment' Objects", () => {
   it("Successfull payment since every data matches mock response", () => {
     const PayerID = "EPSETXNXPKL6C"
     const quantity = 1
-    const payment1 = {
+    const createdPayment = {
       payer_id: PayerID,
       transactions: [
         {
@@ -24,13 +24,13 @@ describe("Create matching 'execute_payment' Objects", () => {
         }
       ]
     }
-    expect(payment1).toStrictEqual(mockResponse1)
+    expect(createdPayment).toStrictEqual(mockMatchResponse)
   })
 
   it("Failure attempt since PayerID doesn't match mock response", () => {
     const PayerID = "WRONGPAYERID"
     const quantity = 1
-    const payment2 = {
+    const createdPayment = {
       payer_id: PayerID,
       transactions: [
         {
@@ -41,13 +41,13 @@ describe("Create matching 'execute_payment' Objects", () => {
         }
       ]
     }
-    expect(payment2).not.toStrictEqual(mockResponse2)
+    expect(createdPayment).not.toStrictEqual(mockMatchResponse)
   })
 
   it("Successfull payment since even numbers multiply correctly", () => {
-    const PayerID = "1D0SCG39STJ39"
+    const PayerID = "9P857MTZQ0XMX"
     const quantity = 2
-    const payment3 = {
+    const createdPayment = {
       payer_id: PayerID,
       transactions: [
         {
@@ -58,13 +58,13 @@ describe("Create matching 'execute_payment' Objects", () => {
         }
       ]
     }
-    expect(payment3).toStrictEqual(mockResponse3)
+    expect(createdPayment).toStrictEqual(mockHigherTotal)
   })
 
   it("Failure attempt since quantity doesn't multiply correctly", () => {
     const PayerID = "5ED0L94IQVTEA"
     const quantity = 70
-    const payment4 = {
+    const createdPayment = {
       payer_id: PayerID,
       transactions: [
         {
@@ -75,7 +75,7 @@ describe("Create matching 'execute_payment' Objects", () => {
         }
       ]
     }
-    expect(payment4).not.toStrictEqual(mockResponse4)
+    expect(createdPayment).not.toStrictEqual(mockUnsuccessfulTotal)
   })
 })
 
@@ -112,7 +112,7 @@ describe("Create matching 'sample_payment_json' Objects", () => {
         }
       ]
     }
-    expect(sample_payment_json).toStrictEqual(mockResponse5)
+    expect(sample_payment_json).toStrictEqual(mockSamplePayment)
   })
 
   it("Failure attempt to create Object since quantity doesn't match the mock response", () => {
@@ -147,7 +147,7 @@ describe("Create matching 'sample_payment_json' Objects", () => {
         }
       ]
     }
-    expect(sample_payment_json).not.toStrictEqual(mockResponse5)
+    expect(sample_payment_json).not.toStrictEqual(mockSamplePayment)
   })
 })
 
