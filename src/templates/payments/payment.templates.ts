@@ -1,7 +1,7 @@
 import { Request } from "express"
 import { Payment } from "paypal-rest-sdk"
 import ExecuteRequestJson from "../../interfaces/payment.interface"
-import { RequestParamsPay, RequestParamsSuccess } from "../../routes/controllers/payment.controller"
+import { RequestParamsPay, RequestParamsSuccess } from "../../routes/controllers/Payment.controller"
 
 export const samplePayment = (req: Request<{}, {}, {}, RequestParamsPay>): Payment => {
   return {
