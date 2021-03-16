@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import * as mongoose from "mongoose"
+import * as supertest from "supertest"
 import App from "../../../../App"
 import AuthenticationController from "./../../authentication.controller"
 import FilmController from "./../../film.controller"
 import PaymentController from "./../../payment.controller"
 import { mockResponse1, mockResponse2, mockResponse3, mockResponse4, mockResponse5 } from "./__mocks__/mockResponses"
-const supertest = require("supertest")
 
 const app = new App([new AuthenticationController(), new FilmController(), new PaymentController()])
 const server = app.listen("8080")
