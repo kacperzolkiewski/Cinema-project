@@ -1,19 +1,20 @@
 import "dotenv/config"
 import { Router, Request, Response } from "express"
 import * as paypal from "paypal-rest-sdk"
-import { SDKError, Payment, PaymentResponse } from "paypal-rest-sdk"
+import { SDKError, Payment, PaymentResponse, ExecuteRequestJson } from "paypal-rest-sdk"
 import Controller from "../../interfaces/Controller.interface"
+import { samplePayment, executePayment } from "../../templates/payments/payment.templates"
 
-type RequestParams1 = { 
-  name: string,
-  quantity: number,
-  description: string,
-} 
+export type RequestParams1 = {
+  name: string
+  quantity: number
+  description: string
+}
 
-type RequestParams2 = {
-  quantity: number,
-  PayerID: string,
-  paymentId: string,
+export type RequestParams2 = {
+  quantity: number
+  PayerID: string
+  paymentId: string
   token?: string
 }
 
@@ -36,39 +37,10 @@ class PaymentController implements Controller {
     this.router.post(`${this.path}/success`, this.successPayment)
   }
 
-  private createPayment = (req: Request<{}, RequestParams1>, res: Response): void => {
-    const sample_payment_json: Payment = {
-      intent: "sale",
-      payer: {
-        payment_method: "paypal"
-      },
-      redirect_urls: {
-        return_url: `http://localhost:3000/success?quantity=${req.query.quantity}`,
-        cancel_url: "http://localhost:3000/cancel"
-      },
-      transactions: [
-        {
-          item_list: {
-            items: [
-              {
-                name: JSON.stringify(req.query.name),
-                sku: "001",
-                price: "25.00",
-                currency: "PLN",
-                quantity: 1
-              }
-            ]
-          },
-          amount: {
-            currency: "PLN",
-            total: `${req.query.quantity * 25.0}`
-          },
-          description: JSON.stringify(req.query.description)
-        }
-      ]
-    }
+  private createPayment = (req: Request<{}, {}, {}, RequestParams1>, res: Response): void => {
+    const createPaymentObject: Payment = samplePayment(req)
 
-    paypal.payment.create(sample_payment_json, (error: SDKError, payment: PaymentResponse): void => {
+    paypal.payment.create(createPaymentObject, (error: SDKError, payment: PaymentResponse): void => {
       if (error) {
         res.status(400).send(error)
       } else {
@@ -79,20 +51,10 @@ class PaymentController implements Controller {
     })
   }
 
-  private successPayment = (req: Request<RequestParams2>, res: Response): void => {
-    const execute_payment_json = {
-      payer_id: req.params.PayerID,
-      transactions: [
-        {
-          amount: {
-            currency: "PLN",
-            total: +req.params.quantity * 25.0
-          }
-        }
-      ]
-    }
+  private successPayment = (req: Request<{}, {}, {}, RequestParams2>, res: Response): void => {
+    const executePayemntObject: ExecuteRequestJson = executePayment(req)
 
-    paypal.payment.execute(req.params.paymentId, execute_payment_json, (error: SDKError, payment: Payment): void => {
+    paypal.payment.execute(req.query.paymentId, executePayemntObject, (error: SDKError, payment: Payment): void => {
       if (error) {
         res.status(400).send(error)
       } else {
