@@ -3,6 +3,7 @@ import cookieParser = require("cookie-parser")
 import express = require("express")
 import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
+import { Server } from "node:http"
 import pino from "pino"
 import { serve, setup } from "swagger-ui-express"
 import Controller from "./interfaces/Controller.interface"
@@ -12,6 +13,7 @@ import "dotenv/config"
 class App {
   public app: express.Application
   public logger: pino.Logger
+  public mongo: typeof mongoose
 
   constructor(controllers: Controller[]) {
     this.app = express()
@@ -19,7 +21,10 @@ class App {
 
     this.initializeLogger()
     this.connectToTheDatabase().then(
-      () => this.logger.info("MongoDB connected"),
+      (mongo) => {
+        this.mongo = mongo
+        this.logger.info("MongoDB connected")
+      },
       (error) => {
         this.logger.error(error)
       }
@@ -28,8 +33,8 @@ class App {
     this.initializeControllers(controllers)
   }
 
-  public listen(): void {
-    this.app.listen(process.env.PORT, () => {
+  public listen(port: string): Server {
+    return this.app.listen(port, () => {
       this.logger.info(`App listening on the port ${process.env.PORT}`)
     })
   }
@@ -51,12 +56,14 @@ class App {
     this.app.use("/docs", serve, setup(swaggerDocument))
   }
 
-  private async connectToTheDatabase(): Promise<void> {
+  private async connectToTheDatabase(): Promise<typeof mongoose> {
     const uri = process.env.MONGODB_URI || ""
-    await mongoose.connect(uri, {
+    const mongo = await mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
+
+    return mongo
   }
 }
 
