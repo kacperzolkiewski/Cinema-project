@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+import * as mongoose from "mongoose"
 import App from "../../../../App"
 import AuthenticationController from "./../../authentication.controller"
 import FilmController from "./../../film.controller"
@@ -188,6 +189,7 @@ describe("Getting responses status from /payment/successs", () => {
 
   afterAll(async (done) => {
     await server.close()
+    await mongoose.connection.close()
     await new Promise<void>((resolve) => setTimeout(() => resolve(), 500))
     done()
   })
