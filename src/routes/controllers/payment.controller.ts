@@ -39,13 +39,13 @@ class PaymentController implements Controller {
   }
 
   private createPayment = (req: Request<{}, {}, {}, RequestParams1>, res: Response): void => {
-    const createPaymentObject: Payment = samplePayment(req)
+    const createPaymentJson: Payment = samplePayment(req)
 
-    paypal.payment.create(createPaymentObject, (error: SDKError, payment: PaymentResponse): void => {
+    paypal.payment.create(createPaymentJson, (error: SDKError, payment: PaymentResponse): void => {
       if (error) {
         res.status(400).send(error)
       } else {
-        payment.links.forEach((link: paypal.Link) => {
+        payment.links?.forEach((link: paypal.Link) => {
           link.rel === "approval_url" && res.status(200).redirect(link.href)
         })
       }
@@ -53,9 +53,9 @@ class PaymentController implements Controller {
   }
 
   private successPayment = (req: Request<{}, {}, {}, RequestParams2>, res: Response): void => {
-    const executePayemntObject: ExecuteRequestJson = executePayment(req)
+    const executePayemntJson: ExecuteRequestJson = executePayment(req)
 
-    paypal.payment.execute(req.query.paymentId, executePayemntObject, (error: SDKError, payment: Payment): void => {
+    paypal.payment.execute(req.query.paymentId, executePayemntJson, (error: SDKError, payment: Payment): void => {
       if (error) {
         res.status(400).send(error)
       } else {
