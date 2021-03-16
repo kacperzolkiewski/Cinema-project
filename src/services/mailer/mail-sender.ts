@@ -6,6 +6,8 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
+import { Request, Response } from 'express';
+
 // View engine setup
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -19,11 +21,11 @@ app.use(bodyParser.json());
 
 app.locals.layout = false;
 
-app.get('/', (req, res) => {
+app.get('/', (req:Request, res:Response) => {
   res.render('contact', {layout: false});
 });
 
-app.post('/send', (req, res) => {
+app.post('/send', (req:Request, res:Response) => {
   const output = `
     <p>You have a new contact request</p>
     <h3>Contact Details</h3>
@@ -57,22 +59,21 @@ app.post('/send', (req, res) => {
       text: 'Hello world?',
       attachments: [{
         filename: 'ticket.pdf',
-        path: 'C:/Users/j.szajna/Downloads/Test.pdf',
+        path: 'public/transaction/Ticket.pdf',
         contentType: 'application/pdf'
       }],
       html: output,
       
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailOptions, (error:String, info:Number) => {
       if (error) {
           return console.log(error);
       }
-      console.log('Message sent: %s', info.messageId);   
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
       res.render('contact', {msg:'Email has been sent'});
   });
-  });
+});
 
 app.listen(3004, () => console.log('Server started...'));
