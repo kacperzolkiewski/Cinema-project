@@ -1,5 +1,5 @@
 export const userEndpoints = {
-  "/auth/register": {
+  "api/auth/register": {
     post: {
       tags: ["users"],
       description: "Endpoint to register new user.",
@@ -42,7 +42,7 @@ export const userEndpoints = {
       }
     }
   },
-  "/auth/login": {
+  "api/auth/login": {
     post: {
       tags: ["users"],
       description: "Endpoint to login user.",
@@ -98,7 +98,7 @@ export const userEndpoints = {
       }
     }
   },
-  "/auth/logout": {
+  "api/auth/logout": {
     post: {
       tags: ["users"],
       description: "Endpoint to logout user.",
