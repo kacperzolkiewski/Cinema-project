@@ -11,12 +11,13 @@
 ## General info 
 
 This application provides RESTful API combined with MongoDB database.
+More information in our [Wiki](https://github.com/kacperzolkiewski/CodersCamp2020.CinemaApp/wiki/Opis-dzia%C5%82ania-projektu)
 
 ## Setup
 To get the project follow steps listed below:
 - Use `git clone` to clone the repository
 - Install all packs from the `package.json` file by running `npm install` command in your shell
-- Start a project - `npm start`
+- Start a project - `npm run start`
 
 ## Documentation
 REST API documentation has been provided using *Swagger*.
