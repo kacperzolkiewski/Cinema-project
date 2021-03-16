@@ -1,5 +1,5 @@
 export const cinemaHallEndpoints = {
-  "/halls": {
+  "api/halls": {
     get: {
       tags: ["cinema halls"],
       description: "Endpoint to return cinema halls collection",
@@ -61,7 +61,7 @@ export const cinemaHallEndpoints = {
       }
     }
   },
-  "/halls/{id}": {
+  "api/halls/{id}": {
     get: {
       tags: ["cinema halls"],
       description: "Endpoint to retrun cinema hall with specific id",
