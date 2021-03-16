@@ -1,9 +1,8 @@
-import { IsNumber, IsString, Max, Min } from "class-validator"
+import { IsNumber, IsString, Length } from "class-validator"
 
 export default class CinemaHallDTO {
   @IsString()
-  @Min(3)
-  @Max(32)
+  @Length(3, 32)
   name: string
 
   @IsNumber()
