@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged
+./backend/scripts/lint-staged.sh && ./frontend/scripts/lint-staged.sh

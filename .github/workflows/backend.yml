@@ -13,6 +13,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 15.x
+      - run: cd backend
       - run: npm ci
       - run: npm run code:check
       - run: npm run test:cov
