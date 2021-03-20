@@ -17,7 +17,7 @@
         "start": "node dist/index.js",
         "postinstall": "tsc",
         "test": "jest --passWithNoTests",
-        "test:cov": "jest --coverage --passWithNoTests"
+        "test:cov": "jest --coverage"
     },
     "repository": {
         "type": "git",

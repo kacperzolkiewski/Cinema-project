@@ -23,6 +23,7 @@
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "^7.1.14",
     "@types/react-router-dom": "^5.1.6",
+    "coveralls": "^3.1.0",
     "eslint-config-prettier": "^8.1.0",
     "lint-staged": "^10.5.4",
     "prettier": "2.2.1",
@@ -38,7 +39,8 @@
     "lint:check": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "start": "REACT_APP_ENV=development react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "test:cov": "react-scripts test --coverage"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
