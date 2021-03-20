@@ -26,4 +26,3 @@ jobs:
         # if: github.ref == 'refs/heads/master'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          base-path: ./backend
