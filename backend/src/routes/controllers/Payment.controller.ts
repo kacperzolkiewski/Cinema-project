@@ -45,9 +45,10 @@ class PaymentController implements Controller {
       if (error) {
         res.status(400).send(error)
       } else {
-        payment.links?.forEach((link: paypal.Link) => {
-          link.rel === "approval_url" && res.status(200).redirect(link.href)
-        })
+        payment.links &&
+          payment.links.forEach((link: paypal.Link) => {
+            link.rel === "approval_url" && res.status(200).redirect(link.href)
+          })
       }
     })
   }
