@@ -24,6 +24,5 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         # if: github.ref == 'refs/heads/master'
-      - run: ls
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
