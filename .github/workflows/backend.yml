@@ -4,6 +4,10 @@ on:
     paths-ignore:
       - '**/*.md'
 
+defaults:
+  run:
+    working-directory: ./backend
+
 jobs:
   TestAndBuild:
     runs-on: ubuntu-latest
@@ -13,13 +17,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 15.x
-      - run: cd backend
       - run: npm ci
       - run: npm run code:check
       - run: npm run test:cov
       - run: npm run build
       - name: Coveralls
         uses: coverallsapp/github-action@master
-        if: github.ref == 'refs/heads/master'
+        # if: github.ref == 'refs/heads/master'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          base-path: ./backend
