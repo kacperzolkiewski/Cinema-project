@@ -5,11 +5,13 @@ import {
   Route,
   Switch
 } from "react-router-dom"
+import Navbar from "../components/header/navbar/Navbar"
 import { RouteBuilder } from "../routes"
 
 const App = (): JSX.Element => {
   return (
     <Router>
+      <Navbar />
       <Switch>
         <Route
           path={RouteBuilder.toLogin()}
