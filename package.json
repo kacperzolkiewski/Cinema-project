@@ -4,6 +4,7 @@
   "description": "Git hooks for Cinema App",
   "scripts": {
     "all:install": "./scripts/all-install.sh",
+    "all:install:win": "sh ./scripts/all-install.sh",
     "prepare": "husky install"
   },
   "devDependencies": {
