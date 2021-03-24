@@ -1,100 +1,75 @@
-import Button from "@material-ui/core/Button"
-import Menu from "@material-ui/core/Menu"
-import MenuItem from "@material-ui/core/MenuItem"
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
+import { makeStyles } from "@material-ui/core/styles"
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline"
-import React from "react"
 import { Link } from "react-router-dom"
-import styled from "styled-components"
 import { RouteBuilder } from "../../../routes"
+import { Button } from "../../design/system/button/index"
 
-const Header = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: calc(100% - 20px);
-  justify-content: space-between;
-  color: #1a90ff;
-  padding: 20px;
-  font-size: 24px;
-`
-
-const Logo = styled.div`
-  font-family: Sarpanch, sans-serif;
-  font-weight: 700;
-  padding-right: 20px;
-`
-const White = styled.span`
-  color: white;
-`
-
-const StyledPersonOutlineIcon = styled(PersonOutlineIcon)`
-  color: #1a90ff;
-`
-
-const StyledMenu = styled(Menu)`
-  max-width: 100% - 160px;
-  color: #1a90ff;
-  left: -40px !important;
-  top: 24px !important;
-`
-
-const StyledMenuItem = styled(MenuItem)`
-  font-size: 0.8rem !important;
-`
-
-const StyledLink = styled(Link)`
-  color: #1a90ff;
-`
-
-const ButtonWrapperWithBorder = styled.div`
-  border-left: 1px solid white;
-  border-radius: 0;
-  height: 100%;
-`
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1
+  }
+}))
 
 const Navbar: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null)
-
-  const handleClick = (event: React.MouseEvent) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
+  const classes = useStyles()
 
   return (
-    <Header>
-      <StyledLink to="/">
-        <Logo>
-          .<White>Cinema</White>Crew
-        </Logo>
-      </StyledLink>
-      <ButtonWrapperWithBorder>
-        <Button
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        >
-          <StyledPersonOutlineIcon />
-        </Button>
-      </ButtonWrapperWithBorder>
-
-      <StyledMenu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
+    <div className={classes.root}>
+      <AppBar
+        position="static"
+        css={css`
+          background-color: #000000;
+        `}
       >
-        <StyledLink to={RouteBuilder.toLogin()}>
-          <StyledMenuItem onClick={handleClose}>Login</StyledMenuItem>
-        </StyledLink>
-        <StyledLink to={RouteBuilder.toRegister()}>
-          <StyledMenuItem onClick={handleClose}>Register</StyledMenuItem>
-        </StyledLink>
-      </StyledMenu>
-    </Header>
+        <Toolbar>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            css={css`
+              font-family: Sarpanch, sans-serif;
+              font-weight: 700;
+            `}
+          >
+            <Link to={RouteBuilder.toMain()}>
+              <span
+                css={css`
+                  color: #1a90ff;
+                `}
+              >
+                .
+              </span>
+              Cinema
+              <span
+                css={css`
+                  color: #1a90ff;
+                `}
+              >
+                Crew
+              </span>
+            </Link>
+          </Typography>
+
+          <Button href={RouteBuilder.toLogin()} color="inherit">
+            <PersonOutlineIcon
+              css={css`
+                color: #1a90ff;
+              `}
+            />
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </div>
   )
 }
 

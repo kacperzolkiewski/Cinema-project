@@ -1,9 +1,10 @@
 body {
   margin: 0;
-  background-color: #000000;
+  background-color: #000000 !important;
   font-family: Lato, sans-serif;
 }
 
 a {
   text-decoration: none;
+  color: white;
 }
