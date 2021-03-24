@@ -2,6 +2,7 @@ import Container from "@material-ui/core/Container"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import Typography from "@material-ui/core/Typography"
 import React from "react"
+import { mainColor } from "../design/system/colors/colors"
 
 const SimpleContainer: React.FC = (props) => {
   return (
@@ -11,7 +12,7 @@ const SimpleContainer: React.FC = (props) => {
         <Typography
           component="div"
           style={{
-            backgroundColor: "#000000",
+            backgroundColor: mainColor,
             height: "100vh",
             color: "white"
           }}

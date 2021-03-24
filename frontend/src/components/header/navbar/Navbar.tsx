@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
@@ -8,6 +7,7 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline"
 import { Link } from "react-router-dom"
 import { RouteBuilder } from "../../../routes"
 import { Button } from "../../design/system/button/index"
+import { mainColor, specialColor } from "../../design/system/colors/colors"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,33 +27,34 @@ const Navbar: React.FC = () => {
   return (
     <div className={classes.root}>
       <AppBar
+        color="primary"
         position="static"
-        css={css`
-          background-color: #000000;
-        `}
+        css={{
+          backgroundColor: mainColor
+        }}
       >
         <Toolbar>
           <Typography
             variant="h6"
             className={classes.title}
-            css={css`
-              font-family: Sarpanch, sans-serif;
-              font-weight: 700;
-            `}
+            css={{
+              fontFamily: "Sarpanch, sans-serif",
+              fontWeight: 700
+            }}
           >
             <Link to={RouteBuilder.toMain()}>
               <span
-                css={css`
-                  color: #1a90ff;
-                `}
+                css={{
+                  color: specialColor
+                }}
               >
                 .
               </span>
               Cinema
               <span
-                css={css`
-                  color: #1a90ff;
-                `}
+                css={{
+                  color: specialColor
+                }}
               >
                 Crew
               </span>
@@ -62,9 +63,9 @@ const Navbar: React.FC = () => {
 
           <Button href={RouteBuilder.toLogin()} color="inherit">
             <PersonOutlineIcon
-              css={css`
-                color: #1a90ff;
-              `}
+              css={{
+                color: specialColor
+              }}
             />
           </Button>
         </Toolbar>
