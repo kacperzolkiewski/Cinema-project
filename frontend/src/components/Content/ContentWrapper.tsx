@@ -4,9 +4,9 @@ import Typography from "@material-ui/core/Typography"
 import React from "react"
 import { mainColor } from "../design/system/colors/colors"
 
-const SimpleContainer: React.FC = (props) => {
+const ContentWrapper: React.FC = (props) => {
   return (
-    <React.Fragment>
+    <main>
       <CssBaseline />
       <Container maxWidth="lg">
         <Typography
@@ -20,8 +20,8 @@ const SimpleContainer: React.FC = (props) => {
           {props.children}
         </Typography>
       </Container>
-    </React.Fragment>
+    </main>
   )
 }
 
-export default SimpleContainer
+export default ContentWrapper
