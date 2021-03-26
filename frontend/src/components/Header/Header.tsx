@@ -5,9 +5,10 @@ import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline"
 import { Link } from "react-router-dom"
-import { RouteBuilder } from "../../../routes"
-import { Button } from "../../design/system/button/index"
-import { mainColor, specialColor } from "../../design/system/colors/colors"
+import { RouteBuilder } from "../../routes"
+import { Button } from "../design/system/button"
+import { mainColor, specialColor } from "../design/system/colors/colors"
+import Logo from "./Logo"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Navbar: React.FC = () => {
+const Header: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
+    <header className={classes.root}>
       <AppBar
         color="primary"
         position="static"
@@ -43,21 +44,7 @@ const Navbar: React.FC = () => {
             }}
           >
             <Link to={RouteBuilder.toMain()}>
-              <span
-                css={{
-                  color: specialColor
-                }}
-              >
-                .
-              </span>
-              Cinema
-              <span
-                css={{
-                  color: specialColor
-                }}
-              >
-                Crew
-              </span>
+              <Logo />
             </Link>
           </Typography>
 
@@ -70,8 +57,8 @@ const Navbar: React.FC = () => {
           </Button>
         </Toolbar>
       </AppBar>
-    </div>
+    </header>
   )
 }
 
-export default Navbar
+export default Header
