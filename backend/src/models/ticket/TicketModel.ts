@@ -12,7 +12,7 @@ const TicketSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "FilmModel"
   },
-  seatNumber: {
+  seatId: {
     required: true,
     type: Number
   },
