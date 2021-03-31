@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import { mainColor } from "../design/system/colors/colors"
 
 const useStyles = makeStyles(() => ({
-  root: {
+  footer: {
     flexGrow: 1,
     color: "white",
     backgroundColor: mainColor
@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
 
 const Footer = () => {
   const classes = useStyles()
-  return <footer className={classes.root}>&copy; CodersCamp 2021</footer>
+  return <footer className={classes.footer}>&copy; CodersCamp 2021</footer>
 }
 
 export default Footer

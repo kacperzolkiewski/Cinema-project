@@ -12,8 +12,8 @@ import { mainColor, specialColor } from "../design/system/colors/colors"
 import Logo from "./Logo"
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
+  header: {
+    marginRight: "auto",
     backgroundColor: mainColor,
     borderBottom: `0.5px solid ${grey[800]}`
   },
@@ -23,10 +23,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     fontFamily: "Sarpanch, sans-serif",
-    fontWeight: 700
+    fontWeight: 700,
+    fontSize: "30px"
   },
   userIcon: {
     color: specialColor
+  },
+  link: {
+    color: "white",
+    textDecoration: "none"
   }
 }))
 
@@ -34,11 +39,11 @@ const Header: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <header className={classes.root}>
-      <AppBar color="primary" position="static" className={classes.root}>
+    <header className={classes.header}>
+      <AppBar color="primary" position="static" className={classes.header}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            <Link to={RouteBuilder.toMain()}>
+          <Typography variant="h1" className={classes.title}>
+            <Link className={classes.link} to={RouteBuilder.toMain()}>
               <Logo />
             </Link>
           </Typography>

@@ -7,7 +7,7 @@ import React from "react"
 import { mainColor } from "../design/system/colors/colors"
 
 const useStyles = makeStyles(() => ({
-  root: {
+  main: {
     backgroundColor: mainColor,
     borderBottom: `0.5px solid ${grey[800]}`,
     boxShadow: "0 10px 6px -6px #777",
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
 const ContentWrapper: React.FC = (props) => {
   const classes = useStyles()
   return (
-    <main className={classes.root}>
+    <main className={classes.main}>
       <CssBaseline />
       <Container maxWidth="lg">
         <Typography component="div" className={classes.content}>
