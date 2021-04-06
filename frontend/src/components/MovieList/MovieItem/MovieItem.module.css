@@ -1,0 +1,10 @@
+.grid-container{
+    display: grid;
+
+    grid-template-areas:
+            "poster"
+            "title"
+            "info"
+            ""
+;
+}

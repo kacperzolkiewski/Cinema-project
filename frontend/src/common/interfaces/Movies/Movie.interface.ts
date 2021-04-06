@@ -1,7 +1,8 @@
 import AgeCategoryArr from "./AgeCategory"
 import FilmTypesArr from "./FilmTypes"
 
-export default interface IFilm {
+export default interface IMovie {
+  _id: string
   title: string
   producent: string
   mainActors: string[]
