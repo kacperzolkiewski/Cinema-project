@@ -1,5 +1,6 @@
 import * as bodyParser from "body-parser"
 import cookieParser = require("cookie-parser")
+import * as cors from "cors"
 import express = require("express")
 import * as expressPino from "express-pino-logger"
 import * as mongoose from "mongoose"
@@ -47,6 +48,7 @@ class App {
   private initializeMiddlewares(): void {
     this.app.use(bodyParser.json())
     this.app.use(cookieParser())
+    this.app.use(cors())
   }
 
   private initializeControllers(controllers: Controller[]): void {
