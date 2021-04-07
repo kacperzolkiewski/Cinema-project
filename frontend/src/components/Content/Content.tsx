@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom"
 import { RouteBuilder } from "../../routes"
 import Login from "../../views/Login/Login"
 import Main from "../../views/Main/Main"
+import { SeatsReservation } from "../../views/SeatsReservation/SeatsReservation"
 import ContentWrapper from "./ContentWrapper"
 
 const Content: React.FC = () => {
@@ -17,6 +18,9 @@ const Content: React.FC = () => {
         </Route>
         <Route path={RouteBuilder.toMain()}>
           <Main />
+        </Route>
+        <Route path={RouteBuilder.toSeatsReservation("")}>
+          <SeatsReservation />
         </Route>
         <Redirect exact from="/" to={RouteBuilder.toMain()} />
       </Switch>
