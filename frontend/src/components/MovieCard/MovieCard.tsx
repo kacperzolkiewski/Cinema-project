@@ -1,11 +1,13 @@
-import blue from "@material-ui/core/colors/blue"
 import { makeStyles } from "@material-ui/core/styles"
-import { specialColor } from "../design/system/colors/colors"
+import MoviePageButton from "./MoviePageButton"
+import MovieTrailerLink from "./MovieTrailerLink"
+import PremiereFlag from "./PremiereFlag"
 
 interface IMovieCard {
   movieTitle: string
   imageSource: string
   isPremiere: boolean
+  movieTrailer: string
 }
 
 const useStyles = makeStyles(() => ({
@@ -13,36 +15,50 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    maxHeight: "190px",
-    maxWidth: "120px",
+    maxHeight: "200px",
+    maxWidth: "140px",
     marginRight: "auto"
   },
-  layer: {},
   movieContainer: {
-    padding: "5px"
+    // padding: "5px",
+    opacity: "100%"
   },
-  premiere: {
-    display: "flex",
-    maxWidth: "90px",
-    fontSize: "0.5rem",
+  layer: {
+    display: "none",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    flexDirection: "column",
     position: "absolute",
-    textTransform: "uppercase"
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "space-between"
   },
-  rectangle: {
-    padding: "1px 4px 0 4px",
-    background: `linear-gradient(to right, ${specialColor} 50%, ${blue[900]})`
+  emptyDiv: {
+    height: "40px",
+    weight: "20px"
   },
-  triangle: {
-    margin: 0,
-    width: 0,
-    height: 0,
-    borderTop: `15px solid ${blue[900]}`,
-    borderRight: "3px solid transparent"
+  visible: {
+    display: "block"
   },
   movieImg: {
-    maxHeight: 180,
-    width: 120,
-    objectFit: "cover"
+    backgroundImage:
+      "url(https://a.allegroimg.com/original/11319f/c05eb92d4ff8b3764c2642d73183/Star-Wars-Skywalker-Odrodzenie-plakat-61x91-5-cm)",
+    height: 220,
+    width: 140,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    margin: "auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    "&:hover $layer": {
+      display: "flex"
+    }
   },
   movieTitle: {
     margin: "auto",
@@ -59,22 +75,21 @@ const useStyles = makeStyles(() => ({
 function MovieCard(props: IMovieCard) {
   const classes = useStyles()
   return (
-    <div className={classes.container}>
-      <div className={classes.layer}>
-        <div className={classes.movieContainer}>
-          <div className={props.isPremiere ? classes.premiere : classes.hidden}>
-            <div className={classes.rectangle}>premiera</div>
-            <div className={classes.triangle}></div>
-          </div>
-          <img
-            className={classes.movieImg}
-            alt="Movie"
-            src={props.imageSource}
-          />
+    <article className={classes.container}>
+      <div className={classes.movieContainer}>
+        <div className={props.isPremiere ? classes.visible : classes.hidden}>
+          <PremiereFlag />
         </div>
-        <div className={classes.movieTitle}>{props.movieTitle}</div>
+        <div className={classes.movieImg}>
+          <div className={classes.layer}>
+            <div className={classes.emptyDiv} />
+            <MoviePageButton />
+            <MovieTrailerLink movieTrailer={props.movieTrailer} />
+          </div>
+        </div>
+        <h2 className={classes.movieTitle}>{props.movieTitle}</h2>
       </div>
-    </div>
+    </article>
   )
 }
 
