@@ -1,11 +1,11 @@
-import { Component } from "react" // let's also import Component
-import { HallComponent } from "./HallComponent"
-import { Seat } from "./Seat.Model"
+import CSS from "csstype"
+import { Component } from "react"
+import { Ticket } from "./Ticket.Model"
 import { TicketComponent } from "./TicketComponent"
 
 export interface TicketSectionProps {
-  choosenSeats: Seat[]
   tickets: Ticket[]
+  onTicketChange(ticket: Ticket): void
 }
 
 export interface TicketSectionState {
@@ -27,37 +27,28 @@ export class TicketSection extends Component<
     this.setState({ isReady: true })
   }
 
-  private onSeatSelection = (selectedSeatId: string): void => {
-    this.setState((prevState) => {
-      const tickets = prevState.choosenTickets
-
-      tickets.push(<TicketComponent seatId={selectedSeatId} />)
-
-      return { choosenTickets: tickets }
-    })
-  }
-
-  private renderChoosenTickets = (): JSX.Element => {
-    return (
-      <>
-        {this.state.choosenTickets.map((ticket) => (
-          <>{ticket}</>
-        ))}
-      </>
-    )
-  }
-
   render() {
+    const ticketListCss: CSS.Properties = {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center"
+    }
+
     return (
-      <>
-        <p>temp page url = "/seatsReservation?movieId=12"</p>
+      <section>
+        <h3>Your tickets:</h3>
 
-        <HallComponent onSeatSelection={this.onSeatSelection} />
-
-        <h3>Choosen tickets:</h3>
-
-        <div>{this.renderChoosenTickets()}</div>
-      </>
+        <div style={ticketListCss}>
+          {this.props.tickets.map((ticket) => (
+            <TicketComponent
+              ticket={ticket}
+              onTicketChange={this.props.onTicketChange}
+              key={ticket.id}
+            />
+          ))}
+        </div>
+      </section>
     )
   }
 }
