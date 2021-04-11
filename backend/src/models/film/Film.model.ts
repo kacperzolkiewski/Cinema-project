@@ -12,4 +12,7 @@ export default interface IFilm {
   is3D: boolean
   hours: string[]
   dates: string[]
+  poster: string
+  isPremiere: boolean
+  description: string
 }
