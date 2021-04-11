@@ -51,12 +51,14 @@ export class HallComponent extends Component<
 
     const screenH1Css: CSS.Properties = {
       textAlign: "center",
-      borderColor: "white"
+      color: "black",
+      backgroundColor: "#e0e0e0",
+      marginBottom: "100px"
     }
 
     return (
       <>
-        <h1 style={screenH1Css}>SCREEN</h1>
+        <h1 style={screenH1Css}>EKRAN</h1>
 
         <div style={tableContainer}>
           <table>
