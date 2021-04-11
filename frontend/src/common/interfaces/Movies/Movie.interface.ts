@@ -13,4 +13,5 @@ export default interface IMovie {
   is3D: boolean
   hours: string[]
   dates: string[]
+  description: string
 }

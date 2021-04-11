@@ -3,12 +3,17 @@ import React, { useEffect, useState } from "react"
 import IMovie from "../../common/interfaces/Movies/Movie.interface"
 import MovieItem from "./MovieItem/MovieItem"
 
-const url = "http://localhost:3004/films"
+const url = "https://coderscamp-cinema-app.herokuapp.com/api/films"
 
 const MovieList: React.FC = (): JSX.Element => {
   const [movies, setMovies] = useState<IMovie[]>([])
   useEffect(() => {
-    fetch(url)
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
       .then((data) => data.json())
       .then((movies: IMovie[]) => setMovies(movies))
   }, [])
@@ -28,6 +33,7 @@ const MovieList: React.FC = (): JSX.Element => {
             is3D={m.is3D}
             hours={m.hours}
             dates={m.dates}
+            description={m.description}
             key={m._id}
           />
         ))}
