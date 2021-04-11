@@ -1,12 +1,6 @@
 import CSS from "csstype"
 import { Component } from "react"
-
-export interface Seat {
-  id: string
-  state: string
-  seatRow: number
-  seatNumber: number
-}
+import { Seat } from "./Seat.Model"
 
 export interface SeatComponentProps {
   seat: Seat
@@ -32,20 +26,19 @@ export class SeatComponent extends Component<
   render() {
     const seatCss: CSS.Properties = {
       flexGrow: 1,
-      color: "white",
-      backgroundColor: this.props.seat.state === "free" ? "green" : "yellow"
+
+      color: this.props.seat.state === "empty" ? "black" : "white",
+      backgroundColor:
+        this.props.seat.state === "empty"
+          ? "black"
+          : this.props.seat.state === "free"
+          ? "green"
+          : "red"
     }
     return (
       <>
         <div style={seatCss}>
-          {this.props.seat.state === "selected" ? (
-            <span>selected</span>
-          ) : (
-            <span>free</span>
-          )}
-          <span className="row--seat__row-number">
-            {this.props.seat.seatRow}{" "}
-          </span>
+          {this.props.seat.state === "selected" ? <span></span> : <span></span>}
           <span className="row--seat__seat-number">
             {this.props.seat.seatNumber}
           </span>

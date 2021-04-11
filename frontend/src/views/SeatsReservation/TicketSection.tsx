@@ -1,23 +1,25 @@
 import { Component } from "react" // let's also import Component
 import { HallComponent } from "./HallComponent"
+import { Seat } from "./Seat.Model"
 import { TicketComponent } from "./TicketComponent"
 
-export interface SeatsReservationProps {}
-
-export interface SeatsReservationState {
-  isReady: boolean
-  choosenTickets: JSX.Element[]
+export interface TicketSectionProps {
+  choosenSeats: Seat[]
+  tickets: Ticket[]
 }
 
-export class SeatsReservation extends Component<
-  SeatsReservationProps,
-  SeatsReservationState
+export interface TicketSectionState {
+  isReady: boolean
+}
+
+export class TicketSection extends Component<
+  TicketSectionProps,
+  TicketSectionState
 > {
-  constructor(props: SeatsReservationProps) {
+  constructor(props: TicketSectionProps) {
     super(props)
     this.state = {
-      isReady: false,
-      choosenTickets: []
+      isReady: false
     }
   }
 
@@ -35,7 +37,7 @@ export class SeatsReservation extends Component<
     })
   }
 
-  private renderChoosenTicets = (): JSX.Element => {
+  private renderChoosenTickets = (): JSX.Element => {
     return (
       <>
         {this.state.choosenTickets.map((ticket) => (
@@ -54,7 +56,7 @@ export class SeatsReservation extends Component<
 
         <h3>Choosen tickets:</h3>
 
-        <div>{this.renderChoosenTicets()}</div>
+        <div>{this.renderChoosenTickets()}</div>
       </>
     )
   }

@@ -1,34 +1,22 @@
 import { Component } from "react"
-import { SeatComponent, Seat } from "./SeatComponent"
+import { Seat } from "./Seat.Model"
+import { SeatComponent } from "./SeatComponent"
+import { SEATS } from "./SeatsList.MockedData"
 
-export interface BoardComponentProps {
+export interface HallComponentProps {
   onSeatSelection(selectedSeatId: string): void
 }
 
-export interface BoardComponentState {
+export interface HallComponentState {
   isReady: boolean
   seats: Seat[]
 }
 
-const SEATS: Seat[] = [
-  { id: "1", state: "free", seatRow: 1, seatNumber: 1 },
-  { id: "2", state: "free", seatRow: 1, seatNumber: 2 },
-  { id: "3", state: "free", seatRow: 1, seatNumber: 3 },
-  { id: "4", state: "free", seatRow: 1, seatNumber: 4 },
-
-  { id: "5", state: "free", seatRow: 2, seatNumber: 1 },
-  { id: "6", state: "free", seatRow: 2, seatNumber: 2 },
-  { id: "7", state: "free", seatRow: 2, seatNumber: 3 },
-  { id: "8", state: "free", seatRow: 2, seatNumber: 4 },
-
-  { id: "9", state: "free", seatRow: 3, seatNumber: 1 }
-]
-
-export class BoardComponent extends Component<
-  BoardComponentProps,
-  BoardComponentState
+export class HallComponent extends Component<
+  HallComponentProps,
+  HallComponentState
 > {
-  constructor(props: BoardComponentProps) {
+  constructor(props: HallComponentProps) {
     super(props)
     this.state = { isReady: false, seats: SEATS }
   }
@@ -44,6 +32,8 @@ export class BoardComponent extends Component<
       seats.forEach((s) => {
         if (s.id === seat.id) {
           switch (s.state) {
+            case "empty":
+              break
             case "free":
               s.state = "selected"
               break
@@ -69,12 +59,12 @@ export class BoardComponent extends Component<
     const groupedArray: Array<Seat[]> = []
 
     groupedByRows.forEach((row) =>
-      groupedArray.push(row.sort((n1, n2) => n1.seatNumber - n2.seatNumber))
+      groupedArray.push(row.sort((n1, n2) => parseInt(n1.id) - parseInt(n2.id)))
     )
 
     return (
       <>
-        <h1>Board</h1>
+        <h1>SCREEN</h1>
 
         <table>
           {groupedArray.map((row: Seat[]) => (
