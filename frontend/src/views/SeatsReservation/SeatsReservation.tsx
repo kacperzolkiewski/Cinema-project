@@ -1,6 +1,7 @@
 import { Component } from "react"
 import { HallComponent } from "./HallComponent"
 import { Seat, SeatState } from "./Seat.Model"
+import { SeatReservationComponent } from "./SeatReservationComponent"
 import { SEATS } from "./SeatsList.MockedData"
 import { Ticket } from "./Ticket.Model"
 import { TicketSection } from "./TicketSection"
@@ -100,6 +101,8 @@ export class SeatsReservation extends Component<
           onTicketChange={this.onTicketChange}
           key={`tickets-${this.state.tickets.length}-${this.state.changeTimestamp}`}
         />
+
+        <SeatReservationComponent />
       </>
     )
   }

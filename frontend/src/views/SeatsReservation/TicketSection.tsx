@@ -37,7 +37,7 @@ export class TicketSection extends Component<
 
     return (
       <section>
-        <h3>Your tickets:</h3>
+        <h3>Twoje bilety:</h3>
 
         <div style={ticketListCss}>
           {this.props.tickets.map((ticket) => (
