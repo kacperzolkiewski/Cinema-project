@@ -15,12 +15,11 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    maxHeight: "200px",
+    maxHeight: "234px",
     maxWidth: "140px",
     marginRight: "auto"
   },
   movieContainer: {
-    // padding: "5px",
     opacity: "100%"
   },
   layer: {
@@ -44,8 +43,6 @@ const useStyles = makeStyles(() => ({
     display: "block"
   },
   movieImg: {
-    backgroundImage:
-      "url(https://a.allegroimg.com/original/11319f/c05eb92d4ff8b3764c2642d73183/Star-Wars-Skywalker-Odrodzenie-plakat-61x91-5-cm)",
     height: 220,
     width: 140,
     backgroundPosition: "center",
@@ -80,7 +77,10 @@ function MovieCard(props: IMovieCard) {
         <div className={props.isPremiere ? classes.visible : classes.hidden}>
           <PremiereFlag />
         </div>
-        <div className={classes.movieImg}>
+        <div
+          className={classes.movieImg}
+          style={{ backgroundImage: `url(${props.imageSource})` }}
+        >
           <div className={classes.layer}>
             <div className={classes.emptyDiv} />
             <MoviePageButton />
