@@ -3,7 +3,8 @@ import { makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles(() => ({
   cardContainer: {
-    display: "flex"
+    display: "flex",
+    flexWrap: "wrap"
   },
   root: {
     width: 140,
@@ -18,7 +19,8 @@ const useStyles = makeStyles(() => ({
   },
   textCenter: {
     textAlign: "center"
-  }
+  },
+  cardWrapper: {}
 }))
 const ShowingCard = (props: {
   hours: string[]
@@ -28,19 +30,21 @@ const ShowingCard = (props: {
 
   return (
     <div className={classes.cardContainer}>
-      {props.hours!.map((h, i) => (
+      {props.hours?.map((h, i) => (
         <Card key={i} className={classes.root}>
           <CardContent>
             <Typography variant={"h6"} key={i} className={classes.textCenter}>
               {h}
             </Typography>
-            <Typography
-              variant={"subtitle1"}
-              key={i - 1}
-              className={classes.textCenter}
-            >
-              {props.is3D ? "3D" : "2D"}
-            </Typography>
+            <div className={classes.cardWrapper}>
+              <Typography
+                variant={"subtitle1"}
+                key={i - 1}
+                className={classes.textCenter}
+              >
+                {props.is3D ? "3D" : "2D"}
+              </Typography>
+            </div>
           </CardContent>
         </Card>
       ))}
