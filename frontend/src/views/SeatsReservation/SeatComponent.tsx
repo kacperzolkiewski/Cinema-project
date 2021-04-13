@@ -37,6 +37,8 @@ export class SeatComponent extends Component<
           ? "black"
           : this.props.seat.state === SeatState.free
           ? "green"
+          : this.props.seat.state === SeatState.booked
+          ? "grey"
           : "red"
     }
     return (

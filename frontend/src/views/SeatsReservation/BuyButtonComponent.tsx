@@ -1,7 +1,7 @@
 import CSS from "csstype"
 import { Component } from "react"
 
-export class SeatReservationComponent extends Component {
+export class BuyButtonComponent extends Component {
   constructor(props: {} | Readonly<{}>) {
     super(props)
     this.state = { isReady: false }
@@ -16,18 +16,18 @@ export class SeatReservationComponent extends Component {
       margin: "auto",
       padding: "5px",
       width: "15%",
-      height: "fit-content",
-      backgroundColor: "#1976d2",
-      color: "white",
-      fontFamily: "Sarpanch",
-      fontSize: "25px",
+      background: "linear-gradient(270deg, #6E093A 1.67%, #BF1063 100%)",
+      border: "2px solid #BF1063",
+      boxSizing: "border-box",
+      borderRadius: "4px",
+      color: "#FFFFFF",
       textAlign: "center",
-      placeSelf: "center"
+      fontSize: "1.5em"
     }
 
     return (
       <div style={SeatReservationCss}>
-        <p>Rezerwuj</p>
+        <p>KUP BILETY</p>
       </div>
     )
   }

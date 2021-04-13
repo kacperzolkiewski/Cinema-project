@@ -1,9 +1,9 @@
 import { Component } from "react"
+import { BuyButtonComponent } from "./BuyButtonComponent"
 import { HallComponent } from "./HallComponent"
 import { Seat, SeatState } from "./Seat.Model"
-import { SeatReservationComponent } from "./SeatReservationComponent"
 import { SEATS } from "./SeatsList.MockedData"
-import { Ticket } from "./Ticket.Model"
+import { Ticket, TicketType } from "./Ticket.Model"
 import { TicketSection } from "./TicketSection"
 
 export interface SeatsReservationProps {}
@@ -52,8 +52,10 @@ export class SeatsReservation extends Component<
         tickets.push({
           id: "ticket-" + seat.id,
           seatId: seat.id,
-          type: "normal",
-          price: 12
+          type: TicketType.normal,
+          price: 12,
+          seatNumber: seat.seatNumber,
+          seatRow: seat.seatRow
         })
       } else if (seat.state === SeatState.selected) {
         seats.forEach((s) => {
@@ -87,9 +89,7 @@ export class SeatsReservation extends Component<
 
   render() {
     return (
-      <>
-        <p>temp page url = "/seatsReservation?movieId=12"</p>
-
+      <div>
         <HallComponent
           seats={this.state.seats}
           onSeatSelection={this.onSeatSelection}
@@ -102,8 +102,11 @@ export class SeatsReservation extends Component<
           key={`tickets-${this.state.tickets.length}-${this.state.changeTimestamp}`}
         />
 
-        <SeatReservationComponent />
-      </>
+        <br />
+        <br />
+
+        <BuyButtonComponent key={"BuyButton"} />
+      </div>
     )
   }
 }
