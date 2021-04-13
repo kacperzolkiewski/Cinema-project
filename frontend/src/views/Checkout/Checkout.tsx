@@ -1,10 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
 import { CheckoutHeader, FilmSection } from "./Components"
-import { IFilmSection } from "./Components/FilmSection"
+import { IFilmSection } from "./Components/Checkout.interfaces"
 
 const filmsValues: IFilmSection = {
-  filmsCount: 4
+  filmsCount: 2
 }
 
 const useStyles = makeStyles(() => ({

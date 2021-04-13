@@ -5,7 +5,7 @@ import Logo from "../../../components/Header/Logo"
 const useStyles = makeStyles(() => ({
   title: {
     width: "40%",
-    paddingTop: "2em",
+    paddingTop: "1em",
     textAlign: "center",
     fontSize: "1.8em",
     fontStyle: "italic",
@@ -22,7 +22,7 @@ const CheckoutHeader: React.FC = () => {
 
   return (
     <h3 className={classes.title}>
-      <Logo /> | Your Shopping List
+      <Logo /> | Your Shopping List:
     </h3>
   )
 }
