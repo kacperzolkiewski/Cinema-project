@@ -9,17 +9,17 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "2em"
+    margin: "2em 0"
   },
   submitButton: {
     borderColor: "#ffffff",
-    color: "#ffffff"
+    color: "#ffffff",
+    fontSize: "1.3em"
   },
   totalPayment: {
-    fontSize: "1em",
+    fontSize: "1.5em",
     "& strong": {
       margin: "0 .5em",
-      fontSize: "1.3em",
       color: `${specialColor}`,
       textDecoration: "underline"
     }
@@ -34,8 +34,8 @@ const PaymentButton: React.FC<IPaymentButton> = (
   return (
     <div className={classes.paymentSection}>
       <span className={classes.totalPayment}>
-        Subtotal:
-        <strong>{(props.total * 25.0).toFixed(2)} $</strong>
+        SUBTOTAL:
+        <strong>{(props.total * 25.0).toFixed(2)} PLN</strong>
       </span>
       <Button variant="outlined" className={classes.submitButton}>
         Submit Payment

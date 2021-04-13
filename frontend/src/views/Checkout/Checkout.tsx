@@ -4,7 +4,7 @@ import { CheckoutHeader, FilmSection } from "./Components"
 import { IFilmSection } from "./Components/Checkout.interfaces"
 
 const filmsValues: IFilmSection = {
-  filmsCount: 2
+  filmsCount: 4
 }
 
 const useStyles = makeStyles(() => ({

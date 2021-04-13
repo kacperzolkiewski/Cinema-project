@@ -13,13 +13,17 @@ const filmValues: IFilmArticle = {
 
 const useStyles = makeStyles(() => ({
   filmSection: {
-    width: "90vw",
-    marginLeft: "-5vw"
+    width: "100%"
   },
   allArticles: {
+    paddingTop: "5em",
     display: "flex",
     justifyContent: "center",
-    gap: "1vw"
+    gap: "2em",
+    flexWrap: "wrap",
+    height: "63vh",
+    overflowY: "scroll",
+    overflowX: "hidden"
   },
   buttonSection: {}
 }))

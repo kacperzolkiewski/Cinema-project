@@ -4,7 +4,7 @@ import Logo from "../../../components/Header/Logo"
 
 const useStyles = makeStyles(() => ({
   title: {
-    width: "40%",
+    width: "17em",
     paddingTop: "1em",
     textAlign: "center",
     fontSize: "1.8em",
