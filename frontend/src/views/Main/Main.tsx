@@ -1,4 +1,5 @@
 import React from "react"
+import MovieList from "../../components/MovieList/MovieList"
 import MovieSection from "../../components/MovieSection/MovieSection"
 
 const Main: React.FC = () => {
@@ -41,6 +42,7 @@ const Main: React.FC = () => {
   return (
     <div>
       <MovieSection movies={exampleMovies} />
+      <MovieList />
     </div>
   )
 }
