@@ -13,6 +13,6 @@ export type RequestParamsSuccess = {
   token?: string
 }
 export interface IPayment {
-  createPayment(req: Request<{}, {}, {}, RequestParamsPay>, res: Response): void
-  successPayment(req: Request<{}, {}, {}, RequestParamsSuccess>, res: Response): void
+  createPayment(req: Request<{}, {}, RequestParamsPay, {}>, res: Response): void
+  successPayment(req: Request<{}, {}, RequestParamsSuccess, {}>, res: Response): void
 }

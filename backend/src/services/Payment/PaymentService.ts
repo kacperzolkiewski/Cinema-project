@@ -13,7 +13,7 @@ paypal.configure({
 })
 
 class PaymentService implements IPayment {
-  createPayment = (req: Request<{}, {}, {}, RequestParamsPay>, res: Response): void => {
+  createPayment = (req: Request<{}, {}, RequestParamsPay, {}>, res: Response): void => {
     const createPaymentJson: Payment = samplePayment(req)
 
     paypal.payment.create(createPaymentJson, (error: SDKError, payment: PaymentResponse): void => {
@@ -28,10 +28,10 @@ class PaymentService implements IPayment {
     })
   }
 
-  successPayment = (req: Request<{}, {}, {}, RequestParamsSuccess>, res: Response): void => {
+  successPayment = (req: Request<{}, {}, RequestParamsSuccess, {}>, res: Response): void => {
     const executePayemntJson: ExecuteRequestJson = executePayment(req)
 
-    paypal.payment.execute(req.query.paymentId, executePayemntJson, (error: SDKError, payment: Payment): void => {
+    paypal.payment.execute(req.body.paymentId, executePayemntJson, (error: SDKError, payment: Payment): void => {
       if (error) {
         res.status(400).send(error)
       } else {
