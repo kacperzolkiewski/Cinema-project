@@ -241,6 +241,22 @@ export const filmModel = {
         example: "18.40"
       },
       example: ["18.40", "18.40", "18.40"]
+    },
+    poster: {
+      type: "string",
+      required: "false",
+      example: "https://a.allegroimg.com/original/11319f/c05eb92d4ff8b3764c2642d73183/Star-Wars-Skywalker-Odrodzenie-plakat-61x91-5-cm"
+    },
+    isPremiere: {
+      type: "boolean",
+      required: false,
+      default: true
+    },
+    description: {
+      type: "string",
+      required: true,
+      example:
+        "During an adventure into the criminal underworld, Han Solo meets his future co-pilot Chewbacca and encounters Lando Calrissian years before joining the Rebellion. "
     }
   }
 }

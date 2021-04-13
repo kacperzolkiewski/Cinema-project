@@ -1,7 +1,8 @@
 import AgeCategoryArr from "./AgeCategory"
 import FilmTypesArr from "./FilmTypes"
 
-export default interface IFilm {
+export default interface IMovie {
+  _id: string
   title: string
   producent: string
   mainActors: string[]
@@ -12,7 +13,5 @@ export default interface IFilm {
   is3D: boolean
   hours: string[]
   dates: string[]
-  poster: string
-  isPremiere: boolean
   description: string
 }

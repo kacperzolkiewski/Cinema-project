@@ -45,6 +45,19 @@ const FilmSchema = new mongoose.Schema({
   dates: {
     required: false,
     type: Array
+  },
+  poster: {
+    type: String,
+    required: false
+  },
+  isPremiere: {
+    type: Boolean,
+    required: false,
+    default: true
+  },
+  description: {
+    type: String,
+    required: true
   }
 })
 

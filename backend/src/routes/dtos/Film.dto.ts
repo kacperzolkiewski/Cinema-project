@@ -36,6 +36,17 @@ class FilmDTO {
   @IsOptional()
   @IsArray()
   dates: Array<string>
+
+  @IsString()
+  @IsOptional()
+  poster: string
+
+  @IsBoolean()
+  @IsOptional()
+  isPremiere: boolean
+
+  @IsString()
+  description: string
 }
 
 export default FilmDTO
