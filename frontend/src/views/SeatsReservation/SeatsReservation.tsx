@@ -1,3 +1,4 @@
+import CSS from "csstype"
 import { Component } from "react"
 import { BuyButtonComponent } from "./BuyButtonComponent"
 import { HallComponent } from "./HallComponent"
@@ -88,27 +89,27 @@ export class SeatsReservation extends Component<
   }
 
   render() {
+    const justifyCenter: CSS.Properties = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexWrap: "wrap"
+    }
+
     return (
-      <div>
+      <div style={justifyCenter}>
         <HallComponent
           seats={this.state.seats}
           onSeatSelection={this.onSeatSelection}
           key={`seats-${this.state.tickets.length}-${this.state.changeTimestamp}`}
         />
-
         <TicketSection
           tickets={this.state.tickets}
           onTicketChange={this.onTicketChange}
           key={`tickets-${this.state.tickets.length}-${this.state.changeTimestamp}`}
         />
-
-        <br />
-        <br />
-
-        {this.state.tickets.length > 0 ? (
-          <BuyButtonComponent key={"BuyButton"} />
-        ) : (
-          <></>
+        {this.state.tickets.length > 0 && (
+          <BuyButtonComponent tickets={this.state.tickets} key={"BuyButton"} />
         )}
       </div>
     )

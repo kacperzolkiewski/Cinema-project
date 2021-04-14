@@ -32,11 +32,17 @@ export class TicketSection extends Component<
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
-      justifyContent: "center"
+      justifyContent: "center",
+      width: "100%"
+    }
+
+    const sectionStyles: CSS.Properties = {
+      width: "100%",
+      textAlign: "center"
     }
 
     return (
-      <section>
+      <section style={sectionStyles}>
         <h3>Twoje bilety:</h3>
 
         <div style={ticketListCss}>
