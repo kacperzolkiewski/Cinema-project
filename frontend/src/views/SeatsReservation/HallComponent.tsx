@@ -53,7 +53,8 @@ export class HallComponent extends Component<
       textAlign: "center",
       color: "black",
       backgroundColor: "#e0e0e0",
-      marginBottom: "100px"
+      marginBottom: "100px",
+      width: "100%"
     }
 
     return (
