@@ -105,7 +105,11 @@ export class SeatsReservation extends Component<
         <br />
         <br />
 
-        <BuyButtonComponent key={"BuyButton"} />
+        {this.state.tickets.length > 0 ? (
+          <BuyButtonComponent key={"BuyButton"} />
+        ) : (
+          <></>
+        )}
       </div>
     )
   }
