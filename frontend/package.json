@@ -41,7 +41,7 @@
     "format:fix": "prettier --write src",
     "lint:check": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
-    "start": "REACT_APP_ENV=development react-scripts start",
+    "start": "react-scripts start",
     "test": "react-scripts test",
     "test:cov": "react-scripts test --coverage",
     "start:db": "json-server --watch db.json --port 3004"
