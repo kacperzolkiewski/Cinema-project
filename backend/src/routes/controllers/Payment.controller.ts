@@ -1,68 +1,20 @@
-import "dotenv/config"
-import { Router, Request, Response } from "express"
-import * as paypal from "paypal-rest-sdk"
-import { SDKError, Payment, PaymentResponse } from "paypal-rest-sdk"
+import { Router } from "express"
 import Controller from "../../interfaces/Controller.interface"
-import ExecuteRequestJson from "../../interfaces/payment.interface"
-import { samplePayment, executePayment } from "../../templates/payments/payment.templates"
-
-export type RequestParamsPay = {
-  name: string
-  quantity: number
-  description: string
-}
-
-export type RequestParamsSuccess = {
-  quantity: number
-  PayerID: string
-  paymentId: string
-  token?: string
-}
-
-paypal.configure({
-  mode: "sandbox",
-  client_id: process.env.CLIENT_ID || "",
-  client_secret: process.env.CLIENT_SECRET || ""
-})
+import { IPayment } from "../../services/Payment/IPayment"
+import PaymentService from "../../services/Payment/PaymentService"
 
 class PaymentController implements Controller {
-  public readonly path: string = "/payment"
-  public readonly router: Router = Router()
+  readonly path: string = "/payment"
+  readonly router: Router = Router()
+  readonly paymentService: IPayment = new PaymentService()
 
   constructor() {
     this.initRoutes()
   }
 
-  private initRoutes(): void {
-    this.router.post(`${this.path}/pay`, this.createPayment)
-    this.router.post(`${this.path}/success`, this.successPayment)
-  }
-
-  private createPayment = (req: Request<{}, {}, {}, RequestParamsPay>, res: Response): void => {
-    const createPaymentJson: Payment = samplePayment(req)
-
-    paypal.payment.create(createPaymentJson, (error: SDKError, payment: PaymentResponse): void => {
-      if (error) {
-        res.status(400).send(error)
-      } else {
-        payment.links &&
-          payment.links.forEach((link: paypal.Link) => {
-            link.rel === "approval_url" && res.status(200).redirect(link.href)
-          })
-      }
-    })
-  }
-
-  private successPayment = (req: Request<{}, {}, {}, RequestParamsSuccess>, res: Response): void => {
-    const executePayemntJson: ExecuteRequestJson = executePayment(req)
-
-    paypal.payment.execute(req.query.paymentId, executePayemntJson, (error: SDKError, payment: Payment): void => {
-      if (error) {
-        res.status(400).send(error)
-      } else {
-        res.status(200).json(payment)
-      }
-    })
+  initRoutes = (): void => {
+    this.router.post(`${this.path}/pay`, this.paymentService.createPayment)
+    this.router.post(`${this.path}/success`, this.paymentService.successPayment)
   }
 }
 
