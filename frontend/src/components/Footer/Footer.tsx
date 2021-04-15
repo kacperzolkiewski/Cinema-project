@@ -5,6 +5,10 @@ const useStyles = makeStyles(() => ({
   footer: {
     flexGrow: 1,
     color: "white",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: "1.3em",
+    padding: "2em",
     backgroundColor: mainColor
   }
 }))
