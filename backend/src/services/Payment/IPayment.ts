@@ -14,5 +14,5 @@ export type RequestParamsSuccess = {
 }
 export interface IPayment {
   createPayment(req: Request<{}, {}, RequestParamsPay, {}>, res: Response): void
-  successPayment(req: Request<{}, {}, RequestParamsSuccess, {}>, res: Response): void
+  successPayment(req: Request<{}, {}, {}, RequestParamsSuccess>, res: Response): void
 }

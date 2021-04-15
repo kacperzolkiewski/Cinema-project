@@ -10,8 +10,8 @@ export const samplePayment = (req: Request<{}, {}, RequestParamsPay, {}>): Payme
       payment_method: "paypal"
     },
     redirect_urls: {
-      return_url: `http://localhost:3000/success?quantity=${req.body.quantity}`,
-      cancel_url: "http://localhost:3000/cancel"
+      return_url: `https://coderscamp-cinema-app.herokuapp.com/api/payment/success?quantity=${req.body.quantity}`,
+      cancel_url: "https://google.com/"
     },
     transactions: [
       {
@@ -36,14 +36,14 @@ export const samplePayment = (req: Request<{}, {}, RequestParamsPay, {}>): Payme
   }
 }
 
-export const executePayment = (req: Request<{}, {}, RequestParamsSuccess, {}>): ExecuteRequestJson => {
+export const executePayment = (req: Request<{}, {}, {}, RequestParamsSuccess>): ExecuteRequestJson => {
   return {
-    payer_id: req.body.PayerID,
+    payer_id: req.query.PayerID,
     transactions: [
       {
         amount: {
           currency: "PLN",
-          total: `${+req.body.quantity * 25.0}`
+          total: `${+req.query.quantity * 25.0}`
         }
       }
     ]

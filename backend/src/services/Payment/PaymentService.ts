@@ -28,14 +28,15 @@ class PaymentService implements IPayment {
     })
   }
 
-  successPayment = (req: Request<{}, {}, RequestParamsSuccess, {}>, res: Response): void => {
+  successPayment = (req: Request<{}, {}, {}, RequestParamsSuccess>, res: Response): void => {
     const executePayemntJson: ExecuteRequestJson = executePayment(req)
 
-    paypal.payment.execute(req.body.paymentId, executePayemntJson, (error: SDKError, payment: Payment): void => {
+    paypal.payment.execute(req.query.paymentId, executePayemntJson, (error: SDKError, payment: Payment): void => {
       if (error) {
         res.status(400).send(error)
       } else {
-        res.status(200).json(payment)
+        window.localStorage.setItem("payment", JSON.stringify(payment))
+        res.status(200).redirect("/")
       }
     })
   }
