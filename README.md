@@ -1,4 +1,21 @@
-# Cinema App - REST API
+# Cinema App - REST API - Fullstack React + Node App
+
+
+
+**Repository of the frontend part of the Cinema App** 
+* [Layout](#layout)
+* [Technologies](#technologies_front)
+
+
+## Layout
+https://www.figma.com/file/cuKLOWensUxkq5dYB082yd/CodersCamp2020.Project.FullStack-Node-React.Cinema?node-id=4441%3A3353
+
+## technologies_front
+
+Main  Technologies
+  - React with TypeScript
+  - MaterialUI
+
 **Repository of the backend part of the Cinema App** 
 
 ### Table of contents
