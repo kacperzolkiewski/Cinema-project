@@ -1,3 +1,5 @@
+import { ITicket } from "../../SeatsReservation/BuyButtonComponent"
+
 export interface IFilmArticle {
   title: string
   imageUrl: string
@@ -7,6 +9,7 @@ export interface IFilmArticle {
 
 export interface IFilmSection {
   filmsCount: number
+  tickets: ITicket[]
 }
 
 export interface IPaymentButton {

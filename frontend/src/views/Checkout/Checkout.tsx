@@ -21,7 +21,7 @@ const Checkout: React.FC = () => {
   return (
     <section className={classes.checkoutContent}>
       <CheckoutHeader />
-      <FilmSection filmsCount={tickets.length} />
+      <FilmSection filmsCount={tickets.length} tickets={tickets} />
     </section>
   )
 }
