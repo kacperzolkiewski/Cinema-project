@@ -42,6 +42,7 @@ export class SeatsReservation extends Component<
     this.setState((prevState) => {
       const seats = prevState.seats
       let tickets = prevState.tickets
+      const moviePath = window.location.pathname.split("=")
 
       if (seat.state === SeatState.free) {
         seats.forEach((s) => {
@@ -56,7 +57,8 @@ export class SeatsReservation extends Component<
           type: TicketType.normal,
           price: 12,
           seatNumber: seat.seatNumber,
-          seatRow: seat.seatRow
+          seatRow: seat.seatRow,
+          movieId: moviePath[0]!
         })
       } else if (seat.state === SeatState.selected) {
         seats.forEach((s) => {

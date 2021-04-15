@@ -5,6 +5,7 @@ export interface Ticket {
   seatNumber: number
   type: TicketType
   price: number
+  movieId: string
 }
 
 export enum TicketType {
