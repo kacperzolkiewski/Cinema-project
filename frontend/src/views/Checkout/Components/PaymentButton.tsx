@@ -14,8 +14,7 @@ const useStyles = makeStyles(() => ({
   paymentSection: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    margin: "2em 0"
+    alignItems: "center"
   },
   submitButton: {
     borderColor: "#ffffff",
