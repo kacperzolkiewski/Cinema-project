@@ -22,8 +22,7 @@ const useStyles = makeStyles(() => ({
     gap: "2em",
     flexWrap: "wrap",
     height: "63vh",
-    overflowY: "scroll",
-    overflowX: "hidden"
+    overflow: "hidden"
   },
   buttonSection: {}
 }))
@@ -50,7 +49,7 @@ const FilmSection: React.FC<IFilmSection> = (
           <FilmAricle
             title={filmValues.title}
             imageUrl={filmValues.imageUrl}
-            quantity={filmValues.quantity}
+            quantity={props.filmsCount}
             onQuantityChange={handleQuantity}
           />
         )}

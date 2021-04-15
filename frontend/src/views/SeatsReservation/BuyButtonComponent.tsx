@@ -4,7 +4,7 @@ import { Component } from "react"
 import { Link } from "react-router-dom"
 import { Ticket } from "./Ticket.Model"
 
-interface ITicket {
+export interface ITicket {
   tickets: Ticket[]
   key: string
 }

@@ -1,11 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles"
 import React from "react"
+import { ITicket } from "../SeatsReservation/BuyButtonComponent"
 import { CheckoutHeader, FilmSection } from "./Components"
-import { IFilmSection } from "./Components/Checkout.interfaces"
-
-const filmsValues: IFilmSection = {
-  filmsCount: 4
-}
 
 const useStyles = makeStyles(() => ({
   checkoutContent: {
@@ -16,10 +12,16 @@ const useStyles = makeStyles(() => ({
 const Checkout: React.FC = () => {
   const classes = useStyles()
 
+  const handleTickets = (): string => {
+    const ticketsArr: string | null = window.localStorage.getItem("tickets")
+    return ticketsArr!.toString()
+  }
+  const tickets: ITicket[] = JSON.parse(handleTickets())
+
   return (
     <section className={classes.checkoutContent}>
       <CheckoutHeader />
-      <FilmSection filmsCount={filmsValues.filmsCount} />
+      <FilmSection filmsCount={tickets.length} />
     </section>
   )
 }

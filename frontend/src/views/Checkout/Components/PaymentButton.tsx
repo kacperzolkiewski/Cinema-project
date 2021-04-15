@@ -4,6 +4,12 @@ import React from "react"
 import { specialColor } from "../../../components/design/system/colors/colors"
 import { IPaymentButton } from "./Checkout.interfaces"
 
+type RequestParamsPay = {
+  name: string
+  quantity: number
+  description: string
+}
+
 const useStyles = makeStyles(() => ({
   paymentSection: {
     display: "flex",
@@ -29,7 +35,24 @@ const useStyles = makeStyles(() => ({
 const PaymentButton: React.FC<IPaymentButton> = (
   props: IPaymentButton
 ): JSX.Element => {
+  const url: string =
+    "https://coderscamp-cinema-app.herokuapp.com/api/payment/pay"
+  const data: RequestParamsPay = {
+    name: "Star Wars",
+    quantity: 2,
+    description: "Movie Film"
+  }
   const classes = useStyles()
+
+  const handlePayment = (): void => {
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then((response) => response.json())
+      .catch((err) => console.error(err))
+  }
 
   return (
     <div className={classes.paymentSection}>
@@ -37,7 +60,11 @@ const PaymentButton: React.FC<IPaymentButton> = (
         SUBTOTAL:
         <strong>{(props.total * 25.0).toFixed(2)} PLN</strong>
       </span>
-      <Button variant="outlined" className={classes.submitButton}>
+      <Button
+        variant="outlined"
+        className={classes.submitButton}
+        onClick={handlePayment}
+      >
         Submit Payment
       </Button>
     </div>
