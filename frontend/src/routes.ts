@@ -7,5 +7,6 @@ export const RouteBuilder = {
   toRegister: (): string => "/register",
   toSeatsReservation: (movieId: string): string =>
     "/seatsReservation" + movieId,
-  toMovie: (): string => "/movie"
+  toMovie: (): string => "/movie",
+  toCheckout: (): string => "/checkout"
 }
