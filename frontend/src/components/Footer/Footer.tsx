@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     fontWeight: "bold",
     fontSize: "1.3em",
-    padding: "2em",
+    padding: "1.5em",
     backgroundColor: mainColor
   }
 }))

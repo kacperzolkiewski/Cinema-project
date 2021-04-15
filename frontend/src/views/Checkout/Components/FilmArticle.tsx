@@ -8,8 +8,8 @@ import { IFilmArticle } from "./Checkout.interfaces"
 
 const useStyles = makeStyles(() => ({
   filmArticle: {
-    width: "22.5em",
-    height: "27em",
+    width: "20em",
+    height: "25em",
     boxShadow: "0px 0px 10px #ffffff"
   },
   filmTitle: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     alignItems: "center"
   },
   filmImage: {
-    width: "16em",
+    width: "15em",
     padding: "2em 0 0em 3em"
   },
   filmQuantityDiv: {

@@ -13,14 +13,18 @@ const filmValues: IFilmArticle = {
 
 const useStyles = makeStyles(() => ({
   filmSection: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
     width: "100%"
   },
-  buttonSection: {
-    width: "100%"
-  }
+  allArticles: {
+    paddingTop: "1em",
+    display: "flex",
+    justifyContent: "center",
+    gap: "2em",
+    flexWrap: "wrap",
+    height: "59vh",
+    overflow: "hidden"
+  },
+  buttonSection: {}
 }))
 
 const FilmSection: React.FC<IFilmSection> = (
@@ -40,11 +44,14 @@ const FilmSection: React.FC<IFilmSection> = (
 
   return (
     <section className={classes.filmSection}>
-      <FilmAricle
-        title={filmValues.title}
-        imageUrl={filmValues.imageUrl}
-        quantity={props.filmsCount}
-      />
+      <div className={classes.allArticles}>
+        <FilmAricle
+          title={filmValues.title}
+          imageUrl={filmValues.imageUrl}
+          quantity={props.filmsCount}
+          onQuantityChange={handleQuantity}
+        />
+      </div>
       <div className={classes.buttonSection}>
         <PaymentButton total={total} onQuantityChange={handleQuantity} />
       </div>

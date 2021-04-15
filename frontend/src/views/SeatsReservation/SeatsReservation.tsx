@@ -58,7 +58,7 @@ export class SeatsReservation extends Component<
           price: 12,
           seatNumber: seat.seatNumber,
           seatRow: seat.seatRow,
-          movieId: moviePath[0]!
+          movieId: moviePath[1]!
         })
       } else if (seat.state === SeatState.selected) {
         seats.forEach((s) => {
